@@ -1,0 +1,38 @@
+//
+//  Factory.swift
+//  MarvelHeroes
+//
+//  Created by Ekaterina Koreneva on 03/12/2019.
+//  Copyright © 2019 Ekaterina. All rights reserved.
+//
+
+import Foundation
+
+class ModulesFactory {
+	func getCharacterSearchModule() -> CharacterTableViewController {
+		let repository = CharacterRepository()
+		let router = CharacterRouter(factory: self)
+
+		let presenter = CharactersSearchPresenter(repository: repository, router: router)
+		let viewController = CharacterTableViewController(presenter: presenter)
+		
+		router.viewController = viewController
+		presenter.view = viewController
+
+		return viewController
+	}
+
+	func getDetailsCharacterModule(character: ComicCharacter) -> DetailsCharacterViewController {
+		let router = DetailsCharacterRouter(factory: self)
+		let repository = DetailsCharacterRepository()
+
+		let presenter = DetailCharacterPresenter(repository: repository, router: router)
+		let viewController = DetailsCharacterViewController(presenter: presenter)
+
+		presenter.view = viewController
+		router.viewController = viewController
+
+		return viewController
+	}
+
+}
