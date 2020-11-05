@@ -10,7 +10,7 @@ import Foundation
 
 protocol ICharacterSearchPresenter
 {
-	func showDetail(of index: Int)
+	func showDetail(of character: ComicCharacter)
 
 	func loadInitialData()
 
@@ -31,6 +31,7 @@ class CharactersSearchPresenter
 
 extension CharactersSearchPresenter: ICharacterSearchPresenter
 {
+
 	func loadInitialData() {
 		var charactersArray = [ComicCharacter]()
 		repository.getCharacters { result in
@@ -56,7 +57,7 @@ extension CharactersSearchPresenter: ICharacterSearchPresenter
 //		return comicCharacters.count
 //	}
 //
-	func showDetail(of index: Int) {
-//		router.showDetail(with: comicCharacters[index])
+	func showDetail(of character: ComicCharacter) {
+		router.showDetail(with: character)
 	}
 }

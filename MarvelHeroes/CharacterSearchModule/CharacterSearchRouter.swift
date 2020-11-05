@@ -18,7 +18,7 @@ class CharacterRouter
 
 	weak var viewController: CharacterTableViewController? //weak
 
-	private weak var factory: ModulesFactory? //weak
+	private var factory: ModulesFactory //STRONG!!! warning
 
 	init(factory: ModulesFactory) {
 		self.factory = factory
@@ -28,10 +28,9 @@ class CharacterRouter
 extension CharacterRouter: ICharacterSearchRouter
 {
 	func showDetail(with character: ComicCharacter) {
-		if let detailViewController = factory?.getDetailsCharacterModule(character: character) {
+		let detailViewController = factory.getDetailsCharacterModule(character: character)
 		detailViewController.view.backgroundColor = .white
 		viewController?.navigationController?.pushViewController(detailViewController,
 																 animated: true)
-		}
 	}
 }

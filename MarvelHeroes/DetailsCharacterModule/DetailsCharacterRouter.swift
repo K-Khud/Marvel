@@ -18,7 +18,7 @@ class DetailsCharacterRouter
 
 	weak var viewController: DetailsCharacterViewController? //weak
 
-	private weak var factory: ModulesFactory? //weak
+	private var factory: ModulesFactory //strong!!!! WARNING
 
 	init(factory: ModulesFactory) {
 		self.factory = factory
@@ -27,11 +27,11 @@ class DetailsCharacterRouter
 
 extension DetailsCharacterRouter: IDetailsCharacterRouter
 {
-//	func showDetail(with character: ComicCharacter) {
-//		if let detailViewController = factory.getDetailsModule(character: ComicCharacter) {
-//		detailViewController.view.backgroundColor = .white
-//		viewController?.navigationController?.pushViewController(detailViewController,
-//																 animated: true)
-//		}
-//	}
+	func showDetail(with character: ComicCharacter) {
+		let detailViewController = factory.getDetailsCharacterModule(character: character) 
+//			detailViewController.view.backgroundColor = .white
+			viewController?.navigationController?.pushViewController(detailViewController,
+																	 animated: true)
+
+	}
 }

@@ -24,7 +24,7 @@ class ModulesFactory {
 
 	func getDetailsCharacterModule(character: ComicCharacter) -> DetailsCharacterViewController {
 		let router = DetailsCharacterRouter(factory: self)
-		let repository = DetailsCharacterRepository()
+		let repository = DetailsCharacterRepository(character: character)
 
 		let presenter = DetailCharacterPresenter(repository: repository, router: router)
 		let viewController = DetailsCharacterViewController(presenter: presenter)

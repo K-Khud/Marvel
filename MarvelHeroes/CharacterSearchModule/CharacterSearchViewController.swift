@@ -18,6 +18,23 @@ class CharacterTableViewController: UITableViewController
 	
 	var resultSearchController = UISearchController()
 	var charactersArray = [ComicCharacter]()
+	private var titleLabel: UILabel = {
+		let label = UILabel()
+		label.textAlignment = .left
+		label.font = .boldSystemFont(ofSize: 32)
+		label.numberOfLines = 0
+		label.backgroundColor = .clear
+		label.text = "Heroes"
+		label.textColor = .black
+		return label
+	}()
+
+	private var titleImageView: UIImageView = {
+		let titleImageView = UIImageView(image: UIImage(named: "superhero"))
+		titleImageView.contentMode = .scaleAspectFit
+		return titleImageView
+	}()
+
 //	var headerView: CustomHeaderView
 //	var headerHeightConstraint: NSLayoutConstraint
 
@@ -36,7 +53,7 @@ class CharacterTableViewController: UITableViewController
 		resultSearchController = ({
 			let controller = UISearchController(searchResultsController: nil)
 			controller.searchResultsUpdater = self as? UISearchResultsUpdating
-			controller.dimsBackgroundDuringPresentation = false
+//			controller.dimsBackgroundDuringPresentation = false
 			controller.searchBar.sizeToFit()
 			tableView.tableHeaderView = controller.searchBar
 			return controller
@@ -45,6 +62,7 @@ class CharacterTableViewController: UITableViewController
 		tableView.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
 		self.tableView.dataSource = self
 		tableView.reloadData()
+
 	}
 
 	override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -64,7 +82,24 @@ class CharacterTableViewController: UITableViewController
 //	}
 
 	func setUpHeader() {
-		self.title = "Heroes"
+		let spacer = UIView()
+		let constraint = spacer.widthAnchor.constraint(greaterThanOrEqualToConstant: CGFloat.greatestFiniteMagnitude)
+		constraint.isActive = true
+		constraint.priority = .defaultLow
+
+		
+		let stackView = UIStackView(arrangedSubviews: [titleImageView, titleLabel, spacer])
+		stackView.axis = .horizontal
+		stackView.distribution = .fillEqually
+		stackView.alignment = .fill
+		stackView.spacing = 5
+		stackView.translatesAutoresizingMaskIntoConstraints = false
+
+		navigationItem.titleView = stackView
+	}
+
+	override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+		presenter.showDetail(of: charactersArray[indexPath.row])
 	}
 }
 

@@ -14,10 +14,10 @@ protocol IDetailContactPresenter
 
 	//TODO: present DetailsViewController
 
-//	func loadInitialData()
+	func loadCharacterData() -> ComicCharacter
 }
 
-class DetailCharacterPresenter
+class DetailCharacterPresenter: IDetailContactPresenter
 {
 	weak var view: IDetailsCharacterViewController? //weak
 	private var router: IDetailsCharacterRouter //strong
@@ -27,9 +27,10 @@ class DetailCharacterPresenter
 		self.router = router
 		self.repository = repository
 	}
-}
 
-extension CharactersSearchPresenter: IDetailContactPresenter
-{
+	func loadCharacterData() -> ComicCharacter {
+		return repository.getCharacterDetails()
+	}
+
 
 }

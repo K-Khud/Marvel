@@ -15,8 +15,9 @@ protocol ICharacterRepository
 
 class CharacterRepository: ICharacterRepository
 {
-	let apiClient = MarvelAPIClient(publicKey: MarvelKeys.publicKey.rawValue,
+	private let apiClient = MarvelAPIClient(publicKey: MarvelKeys.publicKey.rawValue,
 									privateKey: MarvelKeys.privateKey.rawValue) //strong
+
 
 	//getCharacters должен принимать в аргумент инициализацию структуры
 	public func getCharacters(completion: @escaping (Result<ComicCharacter, Error>) -> Void) {
