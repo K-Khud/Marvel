@@ -1,0 +1,21 @@
+{
+  "images" : [
+    {
+      "filename" : "toppng.com-superhero-kid-clipart-free-download-kids-clipart-super-hero-1101x1473.png",
+      "idiom" : "universal",
+      "scale" : "1x"
+    },
+    {
+      "idiom" : "universal",
+      "scale" : "2x"
+    },
+    {
+      "idiom" : "universal",
+      "scale" : "3x"
+    }
+  ],
+  "info" : {
+    "author" : "xcode",
+    "version" : 1
+  }
+}
