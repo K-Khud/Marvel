@@ -16,26 +16,14 @@ class CharacterTableViewController: UITableViewController
 {
 	private var presenter: ICharacterSearchPresenter //strong
 	
-	var resultSearchController = UISearchController()
-	var charactersArray = [ComicCharacter]()
-	private var titleLabel: UILabel = {
-		let label = UILabel()
-		label.textAlignment = .left
-		label.font = .boldSystemFont(ofSize: 32)
-		label.numberOfLines = 0
-		label.backgroundColor = .clear
-		label.text = "Heroes"
-		label.textColor = .black
-		return label
-	}()
+	private var resultSearchController = UISearchController()
+	private var charactersArray = [ComicCharacter]()
 
-	private var titleImageView: UIImageView = {
-		let titleImageView = UIImageView(image: UIImage(named: "superhero"))
-		titleImageView.contentMode = .scaleAspectFit
-		return titleImageView
-	}()
+//	private var headerView: CustomNavigationTitle = {
+//		let headerView = CustomNavigationTitle(with: 200)
+//		return headerView
+//	}()
 
-//	var headerView: CustomHeaderView
 //	var headerHeightConstraint: NSLayoutConstraint
 
 	init(presenter: ICharacterSearchPresenter) {
@@ -49,19 +37,23 @@ class CharacterTableViewController: UITableViewController
 
 	override func viewDidLoad() {
 		super.viewDidLoad()
-		setUpHeader()
-		resultSearchController = ({
-			let controller = UISearchController(searchResultsController: nil)
-			controller.searchResultsUpdater = self as? UISearchResultsUpdating
-//			controller.dimsBackgroundDuringPresentation = false
-			controller.searchBar.sizeToFit()
-			tableView.tableHeaderView = controller.searchBar
-			return controller
-		})()
 		presenter.loadInitialData()
 		tableView.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
+		tableView.register(CustomNavigationTitle.self, forHeaderFooterViewReuseIdentifier: "sectionHeader")
 		self.tableView.dataSource = self
 		tableView.reloadData()
+
+		self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: UIBarMetrics.default)
+		self.navigationController?.navigationBar.shadowImage = UIImage()
+
+//		resultSearchController = ({
+//			let controller = UISearchController(searchResultsController: nil)
+//			controller.searchResultsUpdater = self as? UISearchResultsUpdating
+//			controller.searchBar.sizeToFit()
+//			tableView.tableHeaderView = controller.searchBar
+//			return controller
+//		})()
+
 
 	}
 
@@ -77,26 +69,23 @@ class CharacterTableViewController: UITableViewController
 		return cell
 	}
 
-//	override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-//		return CustomHeaderView(withWidth: 200, titleText: "Heroes", descriptionText: nil)
-//	}
+	override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+		let view = tableView.dequeueReusableHeaderFooterView(withIdentifier:
+					"sectionHeader") as! CustomNavigationTitle
 
-	func setUpHeader() {
-		let spacer = UIView()
-		let constraint = spacer.widthAnchor.constraint(greaterThanOrEqualToConstant: CGFloat.greatestFiniteMagnitude)
-		constraint.isActive = true
-		constraint.priority = .defaultLow
+		return view
 
-		
-		let stackView = UIStackView(arrangedSubviews: [titleImageView, titleLabel, spacer])
-		stackView.axis = .horizontal
-		stackView.distribution = .fillEqually
-		stackView.alignment = .fill
-		stackView.spacing = 5
-		stackView.translatesAutoresizingMaskIntoConstraints = false
 
-		navigationItem.titleView = stackView
+//		return setUpHeader()
 	}
+//	func setUpHeader() -> UIView {
+//
+//
+//
+//		let verticalStack = UIStackView(arrangedSubviews: [headerView, resultSearchController.searchBar])
+//
+//		return verticalStack
+//	}
 
 	override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
 		presenter.showDetail(of: charactersArray[indexPath.row])
