@@ -16,15 +16,7 @@ class CharacterTableViewController: UITableViewController
 {
 	private var presenter: ICharacterSearchPresenter //strong
 	
-	private var resultSearchController = UISearchController()
 	private var charactersArray = [ComicCharacter]()
-
-//	private var headerView: CustomNavigationTitle = {
-//		let headerView = CustomNavigationTitle(with: 200)
-//		return headerView
-//	}()
-
-//	var headerHeightConstraint: NSLayoutConstraint
 
 	init(presenter: ICharacterSearchPresenter) {
 		self.presenter = presenter
@@ -38,23 +30,13 @@ class CharacterTableViewController: UITableViewController
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		presenter.loadInitialData()
+
 		tableView.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
 		tableView.register(CustomNavigationTitle.self, forHeaderFooterViewReuseIdentifier: "sectionHeader")
 		self.tableView.dataSource = self
+
+		setupNavigationTitle()
 		tableView.reloadData()
-
-		self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: UIBarMetrics.default)
-		self.navigationController?.navigationBar.shadowImage = UIImage()
-
-//		resultSearchController = ({
-//			let controller = UISearchController(searchResultsController: nil)
-//			controller.searchResultsUpdater = self as? UISearchResultsUpdating
-//			controller.searchBar.sizeToFit()
-//			tableView.tableHeaderView = controller.searchBar
-//			return controller
-//		})()
-
-
 	}
 
 	override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -70,25 +52,18 @@ class CharacterTableViewController: UITableViewController
 	}
 
 	override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-		let view = tableView.dequeueReusableHeaderFooterView(withIdentifier:
+		let headerView = tableView.dequeueReusableHeaderFooterView(withIdentifier:
 					"sectionHeader") as! CustomNavigationTitle
-
-		return view
-
-
-//		return setUpHeader()
+		return headerView
 	}
-//	func setUpHeader() -> UIView {
-//
-//
-//
-//		let verticalStack = UIStackView(arrangedSubviews: [headerView, resultSearchController.searchBar])
-//
-//		return verticalStack
-//	}
 
 	override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
 		presenter.showDetail(of: charactersArray[indexPath.row])
+	}
+
+	func setupNavigationTitle() {
+		self.navigationController?.navigationBar.barTintColor = UIColor(named: "headerColor")
+		self.navigationController?.navigationBar.shadowImage = UIImage()
 	}
 }
 

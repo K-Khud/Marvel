@@ -11,6 +11,15 @@ import UIKit
 
 class CustomNavigationTitle: UITableViewHeaderFooterView
 {
+	var resultSearchController: UISearchController = {
+		let controller = UISearchController(searchResultsController: nil)
+		controller.searchResultsUpdater = self as? UISearchResultsUpdating
+		controller.searchBar.sizeToFit()
+		controller.searchBar.backgroundImage = UIImage()
+		return controller
+	}()
+
+
 	private var title: UILabel = {
 		let label = UILabel()
 		label.textAlignment = .left
@@ -41,28 +50,34 @@ class CustomNavigationTitle: UITableViewHeaderFooterView
 	func configureContents() {
 		image.translatesAutoresizingMaskIntoConstraints = false
 		title.translatesAutoresizingMaskIntoConstraints = false
+		resultSearchController.searchBar.translatesAutoresizingMaskIntoConstraints = false
 
 		contentView.addSubview(image)
 		contentView.addSubview(title)
 		contentView.backgroundColor = UIColor(named: "headerColor")
+		contentView.addSubview(resultSearchController.searchBar)
 
-		// Center the image vertically and place it near the leading
-		// edge of the view. Constrain its width and height to 50 points.
+
 		NSLayoutConstraint.activate([
 			image.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
 			image.widthAnchor.constraint(equalToConstant: 70),
 			image.heightAnchor.constraint(equalToConstant: 70),
-			image.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
+			image.topAnchor.constraint(equalTo: contentView.topAnchor),
 
-			// Center the label vertically, and use it to fill the remaining
-			// space in the header view.
 			title.heightAnchor.constraint(equalToConstant: 70),
 			title.leadingAnchor.constraint(equalTo: image.trailingAnchor,
 										   constant: 8),
 			title.trailingAnchor.constraint(equalTo:
 												contentView.layoutMarginsGuide.trailingAnchor),
-			title.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
-			contentView.heightAnchor.constraint(equalToConstant: 100)
+			title.centerYAnchor.constraint(equalTo: image.centerYAnchor),
+			contentView.heightAnchor.constraint(equalToConstant: 120),
+
+			resultSearchController.searchBar.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
+			resultSearchController.searchBar.centerXAnchor.constraint(equalTo: contentView.centerXAnchor,
+																  constant: 5),
+			resultSearchController.searchBar.topAnchor.constraint(equalTo: image.bottomAnchor)
+
+
 		])
 	}
 }
