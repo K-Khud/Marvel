@@ -180,12 +180,12 @@
 		C6A9F6262396C865007A42E2 /* CharacterSearchModule */ = {
 			isa = PBXGroup;
 			children = (
+				023EC484255855CE00522495 /* CharacterImageLoader.swift */,
 				C6B85DD52396DFD500D4D5E7 /* CharacterRepository.swift */,
 				C6B85DD12396DD3300D4D5E7 /* CharacterSearchPresenter.swift */,
 				C6B85DD32396DD4600D4D5E7 /* CharacterSearchRouter.swift */,
 				C6A9F60C23968F4A007A42E2 /* CharacterSearchViewController.swift */,
 				0286973E255414960003B362 /* CustomNavigationTitle.swift */,
-				023EC484255855CE00522495 /* CharacterImageLoader.swift */,
 			);
 			path = CharacterSearchModule;
 			sourceTree = "<group>";

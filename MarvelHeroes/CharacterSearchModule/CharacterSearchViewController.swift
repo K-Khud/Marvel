@@ -69,15 +69,20 @@ class CharacterTableViewController: UITableViewController
 		let cell = UITableViewCell(style: .subtitle, reuseIdentifier: "cell")
 
 		cell.accessoryType = .disclosureIndicator
+
 		cell.imageView?.image = imagePlaceholder
 		cell.imageView?.layer.masksToBounds = true
 		cell.imageView?.layer.cornerRadius = 40
 
-		if let text = charactersArray[indexPath.row].name {
-			cell.textLabel?.text = text
-			print(indexPath.row)
-			cell.detailTextLabel?.text = charactersArray[indexPath.row].description
-		let numberForImage = imagesUrls[indexPath.row]
+		if let name = charactersArray[indexPath.row].name, let details = charactersArray[indexPath.row].description {
+
+			cell.textLabel?.text = name
+			cell.detailTextLabel?.text = details != "" ? details : "No info"
+			cell.detailTextLabel?.textColor = .systemGray
+			cell.detailTextLabel?.font = .systemFont(ofSize: 14)
+
+
+			let numberForImage = imagesUrls[indexPath.row]
 
 			let _ = loader.loadImage(numberForImage) { result in
 				do {
