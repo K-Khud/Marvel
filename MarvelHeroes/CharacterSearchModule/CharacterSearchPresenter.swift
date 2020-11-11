@@ -13,8 +13,6 @@ protocol ICharacterSearchPresenter
 {
 	func showDetail(of character: ComicCharacter)
 
-//	func showImage(from url: URL) -> UIImage //TODO
-
 	func loadInitialData()
 
 	func search(hero: String)
@@ -36,12 +34,6 @@ class CharactersSearchPresenter
 
 extension CharactersSearchPresenter: ICharacterSearchPresenter
 {
-//	func showImage(from url: URL) -> UIImage {
-//		let image = repository.getImage(from: url)
-//		return image
-//	}
-
-
 	func loadInitialData() {
 		var charactersArray = [ComicCharacter]()
 		repository.getCharacters { result in
@@ -64,18 +56,6 @@ extension CharactersSearchPresenter: ICharacterSearchPresenter
 		//здесь будет новый request
 	}
 
-//	private func loadImages(from imageUrl: URL) {
-//	}
-
-
-//	func getCharacter(of index: Int) -> ComicCharacter {
-//		return comicCharacters[index]
-//	}
-//
-//	var charactersCount: Int {
-//		return comicCharacters.count
-//	}
-//
 	func showDetail(of character: ComicCharacter) {
 		router.showDetail(with: character)
 	}

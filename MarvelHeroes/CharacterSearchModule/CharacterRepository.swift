@@ -38,38 +38,4 @@ class CharacterRepository: ICharacterRepository
 			}
 		}
 	}
-
-
-//	public func getCharacterDetail
-
-//		// Новый request
-//		apiClient.send(GetComics(titleStartsWith: "Avengers", format: .digital)) { response in
-//			print("\nGetComics finished:")
-//
-//			do {
-//				let dataContainer = try response.get()
-//
-//				for comic in dataContainer.results {
-//					print("  Title: \(comic.title ?? "Unnamed comic")")
-//					print("  Thumbnail: \(comic.thumbnail?.url.absoluteString ?? "None")")
-//				}
-//			} catch {
-//				print(error)
-//			}
-//		}
-
-		// Yet another request with a mandatory parameter
-//		apiClient.send(GetComic(comicId: 61537)) { response in
-//			print("\nGetComic finished:")
-//
-//			switch response {
-//			case .success(let dataContainer):
-//				let comic = dataContainer.results.first
-//
-//				print("  Title: \(comic?.title ?? "Unnamed comic")")
-//				print("  Thumbnail: \(comic?.thumbnail?.url.absoluteString ?? "None")")
-//			case .failure(let error):
-//				print(error)
-//			}
-//		}
 }

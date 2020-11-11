@@ -49,7 +49,6 @@ class CharacterTableViewController: UITableViewController
 	private func setTableViewHeights() {
 		tableView.estimatedSectionHeaderHeight = 120
 		tableView.rowHeight = UITableView.automaticDimension
-//		tableView.estimatedRowHeight = 80
 
 	}
 
@@ -80,28 +79,18 @@ class CharacterTableViewController: UITableViewController
 			cell.detailTextLabel?.text = charactersArray[indexPath.row].description
 		let numberForImage = imagesUrls[indexPath.row]
 
-		// 1
-		let token = loader.loadImage(numberForImage) { result in
-		  do {
-			// 2
-			let image = try result.get()
-			// 3
-			DispatchQueue.main.async {
-				cell.imageView?.image = image
-					self.tableView.layoutSubviews()
+			let _ = loader.loadImage(numberForImage) { result in
+				do {
+					let image = try result.get()
+					DispatchQueue.main.async {
+						cell.imageView?.image = image
+						self.tableView.layoutSubviews()
 
+					}
+				} catch {
+					print(error)
+				}
 			}
-		  } catch {
-			// 4
-			print(error)
-		  }
-		}
-//TODO: cancel loading if cell on reuse
-		// 5
-//		cell.onReuse = {
-//		  if let token = token {
-//			self.loader.cancelLoad(token)
-//		  }
 		}
 
 		return cell
@@ -133,12 +122,3 @@ extension CharacterTableViewController: ICharacterView {
 		tableView.reloadData()
 	}
 }
-
-//public extension UIView {
-//	func round() {
-//	let width = bounds.width < bounds.height ? bounds.width : bounds.height
-//	let mask = CAShapeLayer()
-//		mask.path = UIBezierPath(ovalIn: CGRect(x: bounds.midX - width / 2, y: bounds.midX - width / 2, width: width, height: width)).cgPath
-//	self.layer.mask = mask
-//	}
-//}
