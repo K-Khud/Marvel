@@ -16,6 +16,8 @@
 		021D2156255C0BE7007A42D8 /* ComicsSearchRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 021D2155255C0BE7007A42D8 /* ComicsSearchRepository.swift */; };
 		023EC485255855CE00522495 /* CharacterImageLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 023EC484255855CE00522495 /* CharacterImageLoader.swift */; };
 		02515B532551BE09001B4357 /* DetailsCharacterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02515B522551BE09001B4357 /* DetailsCharacterViewController.swift */; };
+		0283BD62255C2A6F00074572 /* AuthorsSearchRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0283BD61255C2A6F00074572 /* AuthorsSearchRouter.swift */; };
+		0283BD65255C2A8200074572 /* AuthorsSearchRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0283BD64255C2A8200074572 /* AuthorsSearchRepository.swift */; };
 		028697362553065C0003B362 /* DetailsCharacterRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 028697352553065C0003B362 /* DetailsCharacterRouter.swift */; };
 		028697392553067C0003B362 /* DerailsCharacterRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 028697382553067B0003B362 /* DerailsCharacterRepository.swift */; };
 		0286973F255414960003B362 /* CustomNavigationTitle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0286973E255414960003B362 /* CustomNavigationTitle.swift */; };
@@ -54,6 +56,8 @@
 		021D2155255C0BE7007A42D8 /* ComicsSearchRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComicsSearchRepository.swift; sourceTree = "<group>"; };
 		023EC484255855CE00522495 /* CharacterImageLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterImageLoader.swift; sourceTree = "<group>"; };
 		02515B522551BE09001B4357 /* DetailsCharacterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsCharacterViewController.swift; sourceTree = "<group>"; };
+		0283BD61255C2A6F00074572 /* AuthorsSearchRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthorsSearchRouter.swift; sourceTree = "<group>"; };
+		0283BD64255C2A8200074572 /* AuthorsSearchRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthorsSearchRepository.swift; sourceTree = "<group>"; };
 		028697352553065C0003B362 /* DetailsCharacterRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsCharacterRouter.swift; sourceTree = "<group>"; };
 		028697382553067B0003B362 /* DerailsCharacterRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DerailsCharacterRepository.swift; sourceTree = "<group>"; };
 		0286973E255414960003B362 /* CustomNavigationTitle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomNavigationTitle.swift; sourceTree = "<group>"; };
@@ -109,8 +113,10 @@
 		021D214B255C0A26007A42D8 /* AuthorsSearchModule */ = {
 			isa = PBXGroup;
 			children = (
-				021D2145255C09F8007A42D8 /* AuthorsSearchViewController.swift */,
+				0283BD64255C2A8200074572 /* AuthorsSearchRepository.swift */,
 				021D214F255C0B16007A42D8 /* AuthorsSearchPresenter.swift */,
+				0283BD61255C2A6F00074572 /* AuthorsSearchRouter.swift */,
+				021D2145255C09F8007A42D8 /* AuthorsSearchViewController.swift */,
 			);
 			path = AuthorsSearchModule;
 			sourceTree = "<group>";
@@ -293,6 +299,7 @@
 				C6B85DDD2398073600D4D5E7 /* Image.swift in Sources */,
 				021D2146255C09F8007A42D8 /* AuthorsSearchViewController.swift in Sources */,
 				C6B85DEC2398097200D4D5E7 /* GetComics.swift in Sources */,
+				0283BD65255C2A8200074572 /* AuthorsSearchRepository.swift in Sources */,
 				C6B85DE52398087100D4D5E7 /* APIRequest.swift in Sources */,
 				C6B85DD22396DD3300D4D5E7 /* CharacterSearchPresenter.swift in Sources */,
 				C6A9F60D23968F4A007A42E2 /* CharacterSearchViewController.swift in Sources */,
@@ -314,6 +321,7 @@
 				C6CC7247239832C300133380 /* URLQueryItemEncoder.swift in Sources */,
 				C6B85DD62396DFD500D4D5E7 /* CharacterRepository.swift in Sources */,
 				028697362553065C0003B362 /* DetailsCharacterRouter.swift in Sources */,
+				0283BD62255C2A6F00074572 /* AuthorsSearchRouter.swift in Sources */,
 				02A1750324F03C8C0086DF84 /* DetailCharacterPresenter.swift in Sources */,
 				0286973F255414960003B362 /* CustomNavigationTitle.swift in Sources */,
 				028697392553067C0003B362 /* DerailsCharacterRepository.swift in Sources */,

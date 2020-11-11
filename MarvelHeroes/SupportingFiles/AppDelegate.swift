@@ -16,15 +16,21 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 	func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
 		let charactersViewController = ModulesFactory().getCharacterSearchModule()
 		let comicsViewController = ModulesFactory().getComicsSearchModule()
+		let authorsViewController = ModulesFactory().getAuthorsSearchModule()
+
 		let tabBarViewController = UITabBarController()
 
-		let image1 = UIImage(named: "shield")?.withRenderingMode(.alwaysOriginal)
-		let image2 = UIImage(named: "comic-1")?.withRenderingMode(.alwaysOriginal)
+		let shieldImage = UIImage(named: "shield")?.withRenderingMode(.alwaysOriginal)
+		let comicsImage = UIImage(named: "comic-1")?.withRenderingMode(.alwaysOriginal)
+		let authorsImage = UIImage(named: "writer")?.withRenderingMode(.alwaysOriginal)
 
-		charactersViewController.tabBarItem = UITabBarItem(title: "Heroes", image: image1, tag: 0)
-		comicsViewController.tabBarItem = UITabBarItem(title: "Comics", image: image2, tag: 1)
 
-		tabBarViewController.viewControllers = [charactersViewController, comicsViewController]
+		charactersViewController.tabBarItem = UITabBarItem(title: "Heroes", image: shieldImage, tag: 0)
+		comicsViewController.tabBarItem = UITabBarItem(title: "Comics", image: comicsImage, tag: 1)
+		authorsViewController.tabBarItem = UITabBarItem(title: "Authors", image: authorsImage, tag: 2)
+
+
+		tabBarViewController.viewControllers = [charactersViewController, comicsViewController, authorsViewController]
 
 		let navigationViewController = UINavigationController(rootViewController: tabBarViewController)
 		navigationViewController.navigationBar.shadowImage = UIImage()

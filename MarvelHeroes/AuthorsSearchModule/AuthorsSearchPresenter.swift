@@ -7,3 +7,19 @@
 //
 
 import Foundation
+protocol IAuthorsSearchPresenter
+{
+}
+
+class AuthorsSearchPresenter: IAuthorsSearchPresenter
+{
+	weak var view: IAuthorsSearchViewController? //weak
+	private var router: IAuthorsSearchRouter //strong
+	private var repository: IAuthorsSearchRepository //strong
+
+	init(repository: IAuthorsSearchRepository, router: IAuthorsSearchRouter) {
+		self.router = router
+		self.repository = repository
+	}
+
+}

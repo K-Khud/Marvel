@@ -48,5 +48,19 @@ class ModulesFactory {
 		return viewController
 	}
 
+	func getAuthorsSearchModule() -> AuthorsSearchViewController {
+		let repository = AuthorsSearchRepository()
+		let router = AuthorsSearchRouter(factory: self)
+
+		let presenter = AuthorsSearchPresenter(repository: repository, router: router)
+		let viewController = AuthorsSearchViewController(presenter: presenter)
+
+		router.viewController = viewController
+		presenter.view = viewController
+
+		return viewController
+	}
+
+
 
 }

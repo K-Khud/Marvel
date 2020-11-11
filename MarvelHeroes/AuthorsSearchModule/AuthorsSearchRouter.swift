@@ -1,5 +1,5 @@
 //
-//  ComicsSearchRouter.swift
+//  AuthorsSearchRouter.swift
 //  MarvelHeroes
 //
 //  Created by Ekaterina Khudzhamkulova on 11.11.2020.
@@ -7,15 +7,14 @@
 //
 
 import Foundation
-
-protocol IComicsSearchRouter
+protocol IAuthorsSearchRouter
 {
 }
 
-class ComicsSearchRouter
+class AuthorsSearchRouter
 {
 
-	weak var viewController: IComicsSearchViewController? //weak
+	weak var viewController: IAuthorsSearchViewController? //weak
 
 	private var factory: ModulesFactory //strong!!!! WARNING
 
@@ -24,6 +23,6 @@ class ComicsSearchRouter
 	}
 }
 
-extension ComicsSearchRouter: IComicsSearchRouter
+extension AuthorsSearchRouter: IAuthorsSearchRouter
 {
 }

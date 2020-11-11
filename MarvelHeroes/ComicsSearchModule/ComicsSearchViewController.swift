@@ -13,7 +13,8 @@ protocol IComicsSearchViewController: AnyObject
 {
 }
 
-class ComicsSearchViewController: UIViewController {
+class ComicsSearchViewController: UIViewController
+{
 
 	let presenter: ComicsSearchPresenter
 
@@ -34,5 +35,6 @@ class ComicsSearchViewController: UIViewController {
 
 }
 
-extension ComicsSearchViewController: IComicsSearchViewController {
+extension ComicsSearchViewController: IComicsSearchViewController
+{
 }
