@@ -13,7 +13,7 @@ protocol ICharacterSearchPresenter
 {
 	func showDetail(of character: ComicCharacter)
 
-	func loadInitialData()
+	func loadCharacters(with nameParameter: String?)
 
 	func search(hero: String)
 }
@@ -34,9 +34,9 @@ class CharactersSearchPresenter
 
 extension CharactersSearchPresenter: ICharacterSearchPresenter
 {
-	func loadInitialData() {
+	func loadCharacters(with nameParameter: String?) {
 		var charactersArray = [ComicCharacter]()
-		repository.getCharacters { result in
+		repository.getCharacters(with: nameParameter) { result in
 			_ = result.map({ comicCharacter in
 				if let url = comicCharacter.thumbnail?.url {
 					self.view?.show(url: url)
@@ -53,7 +53,8 @@ extension CharactersSearchPresenter: ICharacterSearchPresenter
 	}
 
 	func search(hero: String) {
-		//здесь будет новый request
+		
+
 	}
 
 	func showDetail(of character: ComicCharacter) {

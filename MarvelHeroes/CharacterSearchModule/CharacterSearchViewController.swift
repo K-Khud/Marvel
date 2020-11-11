@@ -36,7 +36,7 @@ class CharacterTableViewController: UITableViewController
 	}
 
 	override func viewDidLoad() {
-		presenter.loadInitialData()
+		presenter.loadCharacters(with: nil)
 		super.viewDidLoad()
 
 		self.tableView.dataSource = self
@@ -44,6 +44,7 @@ class CharacterTableViewController: UITableViewController
 		registerCells()
 		setTableViewHeights()
 	}
+//MARK: - TableView Layout methods
 
 	private func setTableViewHeights() {
 		tableView.estimatedSectionHeaderHeight = 120
@@ -55,9 +56,14 @@ class CharacterTableViewController: UITableViewController
 		tableView.register(CustomNavigationTitle.self, forHeaderFooterViewReuseIdentifier: "sectionHeader")
 	}
 
+	override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {return 80}
+
+	//MARK: - TableView Header setup
+
 	override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
 		let headerView = tableView.dequeueReusableHeaderFooterView(withIdentifier:
 																	"sectionHeader") as? CustomNavigationTitle
+		headerView?.searchBar.searchTextField.delegate = self
 		return headerView
 	}
 	//MARK: - UITableViewDataSource
@@ -66,9 +72,6 @@ class CharacterTableViewController: UITableViewController
 		return charactersArray.count
 	}
 
-	override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-		return 80
-	}
 
 	override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
 		let cell = UITableViewCell(style: .subtitle, reuseIdentifier: "cell")
@@ -120,4 +123,31 @@ extension CharacterTableViewController: ICharacterView {
 		charactersArray = heroes
 		tableView.reloadData()
 	}
+}
+//MARK: - UITextFieldDelegate
+
+extension CharacterTableViewController: UISearchTextFieldDelegate
+{
+	func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+		print(textField.text!)
+		textField.endEditing(true)
+		return true
+	}
+
+	func textFieldShouldEndEditing(_ textField: UITextField) -> Bool {
+		if textField.text != "" {
+			return true
+		} else {
+			return false
+		}
+	}
+
+	func textFieldDidEndEditing(_ textField: UITextField) {
+		if let hero = textField.text {
+			print("Should start searching for \(hero)")
+			presenter.loadCharacters(with: hero)
+		} else {return}
+//		textField.text = ""
+	}
+
 }
