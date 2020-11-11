@@ -54,7 +54,6 @@ public class MarvelAPIClient {
 			URLQueryItem(name: "apikey", value: publicKey)
 		]
 
-		// Подумай еще
 		let customQueryItems: [URLQueryItem]
 
 		do {
@@ -65,7 +64,6 @@ public class MarvelAPIClient {
 
 		components.queryItems = commonQueryItems + customQueryItems
 
-		// Склеиваю url
 		return components.url!
 	}
 }

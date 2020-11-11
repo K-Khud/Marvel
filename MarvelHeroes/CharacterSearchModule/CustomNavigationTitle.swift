@@ -47,7 +47,7 @@ class CustomNavigationTitle: UITableViewHeaderFooterView
 		fatalError("init(coder:) has not been implemented")
 	}
 
-	func configureContents() {
+	private func configureContents() {
 		image.translatesAutoresizingMaskIntoConstraints = false
 		title.translatesAutoresizingMaskIntoConstraints = false
 		resultSearchController.searchBar.translatesAutoresizingMaskIntoConstraints = false

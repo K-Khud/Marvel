@@ -7,10 +7,13 @@
 //
 
 import Foundation
+import UIKit
 
 protocol ICharacterSearchPresenter
 {
 	func showDetail(of character: ComicCharacter)
+
+//	func showImage(from url: URL) -> UIImage //TODO
 
 	func loadInitialData()
 
@@ -23,6 +26,8 @@ class CharactersSearchPresenter
 	private var router: ICharacterSearchRouter //strong
 	weak var view: ICharacterView? //weak
 
+//	private var loader = CharacterImageLoader()
+
 	init(repository: ICharacterRepository, router: ICharacterSearchRouter) {
 		self.repository = repository
 		self.router = router
@@ -31,12 +36,22 @@ class CharactersSearchPresenter
 
 extension CharactersSearchPresenter: ICharacterSearchPresenter
 {
+//	func showImage(from url: URL) -> UIImage {
+//		let image = repository.getImage(from: url)
+//		return image
+//	}
+
 
 	func loadInitialData() {
 		var charactersArray = [ComicCharacter]()
 		repository.getCharacters { result in
 			_ = result.map({ comicCharacter in
-///Forward data to VC
+				if let url = comicCharacter.thumbnail?.url {
+					self.view?.show(url: url)
+					print("Loading images from url, \(url)")
+				}
+				
+
 				DispatchQueue.main.async {
 					charactersArray.append(comicCharacter)
 					self.view?.show(heroes: charactersArray)
@@ -48,6 +63,10 @@ extension CharactersSearchPresenter: ICharacterSearchPresenter
 	func search(hero: String) {
 		//здесь будет новый request
 	}
+
+//	private func loadImages(from imageUrl: URL) {
+//	}
+
 
 //	func getCharacter(of index: Int) -> ComicCharacter {
 //		return comicCharacters[index]

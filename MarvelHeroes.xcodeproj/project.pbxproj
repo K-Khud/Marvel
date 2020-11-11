@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		021D213E255BE111007A42D8 /* UIImage_1.png in Resources */ = {isa = PBXBuildFile; fileRef = 021D213D255BE111007A42D8 /* UIImage_1.png */; };
+		023EC485255855CE00522495 /* CharacterImageLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 023EC484255855CE00522495 /* CharacterImageLoader.swift */; };
 		02515B532551BE09001B4357 /* DetailsCharacterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02515B522551BE09001B4357 /* DetailsCharacterViewController.swift */; };
 		028697362553065C0003B362 /* DetailsCharacterRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 028697352553065C0003B362 /* DetailsCharacterRouter.swift */; };
 		028697392553067C0003B362 /* DerailsCharacterRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 028697382553067B0003B362 /* DerailsCharacterRepository.swift */; };
@@ -37,6 +39,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		021D213D255BE111007A42D8 /* UIImage_1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = UIImage_1.png; sourceTree = "<group>"; };
+		023EC484255855CE00522495 /* CharacterImageLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterImageLoader.swift; sourceTree = "<group>"; };
 		02515B522551BE09001B4357 /* DetailsCharacterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsCharacterViewController.swift; sourceTree = "<group>"; };
 		028697352553065C0003B362 /* DetailsCharacterRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsCharacterRouter.swift; sourceTree = "<group>"; };
 		028697382553067B0003B362 /* DerailsCharacterRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DerailsCharacterRepository.swift; sourceTree = "<group>"; };
@@ -126,6 +130,7 @@
 			children = (
 				C6A9F60A23968F4A007A42E2 /* AppDelegate.swift */,
 				C6A9F61123968F4E007A42E2 /* Assets.xcassets */,
+				021D213D255BE111007A42D8 /* UIImage_1.png */,
 				C6A9F61323968F4E007A42E2 /* LaunchScreen.storyboard */,
 				C6A9F61623968F4E007A42E2 /* Info.plist */,
 			);
@@ -140,6 +145,7 @@
 				C6B85DD32396DD4600D4D5E7 /* CharacterSearchRouter.swift */,
 				C6A9F60C23968F4A007A42E2 /* CharacterSearchViewController.swift */,
 				0286973E255414960003B362 /* CustomNavigationTitle.swift */,
+				023EC484255855CE00522495 /* CharacterImageLoader.swift */,
 			);
 			path = CharacterSearchModule;
 			sourceTree = "<group>";
@@ -236,6 +242,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				021D213E255BE111007A42D8 /* UIImage_1.png in Resources */,
 				C6A9F61523968F4E007A42E2 /* LaunchScreen.storyboard in Resources */,
 				C6A9F61223968F4E007A42E2 /* Assets.xcassets in Resources */,
 			);
@@ -270,6 +277,7 @@
 				02A1750324F03C8C0086DF84 /* DetailCharacterPresenter.swift in Sources */,
 				0286973F255414960003B362 /* CustomNavigationTitle.swift in Sources */,
 				028697392553067C0003B362 /* DerailsCharacterRepository.swift in Sources */,
+				023EC485255855CE00522495 /* CharacterImageLoader.swift in Sources */,
 				C6B85DED2398097200D4D5E7 /* CharactersFromResponse.swift in Sources */,
 				C6CC7249239832C300133380 /* md5.swift in Sources */,
 				C6B85DE32398084200D4D5E7 /* DataContainer.swift in Sources */,
@@ -415,6 +423,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 4485DWBU98;
 				INFOPLIST_FILE = "$(SRCROOT)/MarvelHeroes/SupportingFiles/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -433,6 +442,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 4485DWBU98;
 				INFOPLIST_FILE = "$(SRCROOT)/MarvelHeroes/SupportingFiles/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

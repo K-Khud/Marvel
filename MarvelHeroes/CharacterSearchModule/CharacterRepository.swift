@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import UIKit
 
 protocol ICharacterRepository
 {
@@ -37,6 +38,7 @@ class CharacterRepository: ICharacterRepository
 			}
 		}
 	}
+
 
 //	public func getCharacterDetail
 
