@@ -108,7 +108,6 @@ class CharacterTableViewController: UITableViewController
 
 	private func setupNavigationTitle() {
 		self.navigationController?.navigationBar.barTintColor = UIColor(named: "headerColor")
-		self.navigationController?.navigationBar.shadowImage = UIImage()
 	}
 }
 
