@@ -42,21 +42,26 @@ class CharacterTableViewController: UITableViewController
 		self.tableView.dataSource = self
 
 		registerCells()
-		setupNavigationTitle()
 		setTableViewHeights()
 	}
 
 	private func setTableViewHeights() {
 		tableView.estimatedSectionHeaderHeight = 120
 		tableView.rowHeight = UITableView.automaticDimension
-
 	}
 
 	private func registerCells() {
 		tableView.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
 		tableView.register(CustomNavigationTitle.self, forHeaderFooterViewReuseIdentifier: "sectionHeader")
-
 	}
+
+	override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+		let headerView = tableView.dequeueReusableHeaderFooterView(withIdentifier:
+																	"sectionHeader") as? CustomNavigationTitle
+		return headerView
+	}
+	//MARK: - UITableViewDataSource
+
 	override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
 		return charactersArray.count
 	}
@@ -81,7 +86,6 @@ class CharacterTableViewController: UITableViewController
 			cell.detailTextLabel?.textColor = .systemGray
 			cell.detailTextLabel?.font = .systemFont(ofSize: 14)
 
-
 			let numberForImage = imagesUrls[indexPath.row]
 
 			let _ = loader.loadImage(numberForImage) { result in
@@ -101,18 +105,9 @@ class CharacterTableViewController: UITableViewController
 		return cell
 	}
 
-	override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-		let headerView = tableView.dequeueReusableHeaderFooterView(withIdentifier:
-					"sectionHeader") as? CustomNavigationTitle
-		return headerView
-	}
 
 	override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
 		presenter.showDetail(of: charactersArray[indexPath.row])
-	}
-
-	private func setupNavigationTitle() {
-		self.navigationController?.navigationBar.barTintColor = UIColor(named: "headerColor")
 	}
 }
 

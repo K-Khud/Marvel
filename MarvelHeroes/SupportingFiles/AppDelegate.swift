@@ -34,6 +34,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 		let navigationViewController = UINavigationController(rootViewController: tabBarViewController)
 		navigationViewController.navigationBar.shadowImage = UIImage()
+		navigationViewController.navigationBar.barTintColor = UIColor(named: "headerColor")
+		navigationViewController.navigationBar.isTranslucent = false
+
 
 		window = UIWindow(frame: UIScreen.main.bounds)
 		window?.rootViewController = navigationViewController

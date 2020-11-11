@@ -11,12 +11,12 @@ import UIKit
 
 class CustomNavigationTitle: UITableViewHeaderFooterView
 {
-	var resultSearchController: UISearchController = {
-		let controller = UISearchController(searchResultsController: nil)
-		controller.searchResultsUpdater = self as? UISearchResultsUpdating
-		controller.searchBar.sizeToFit()
-		controller.searchBar.backgroundImage = UIImage()
-		return controller
+	var searchBar: UISearchBar = {
+		let bar = UISearchBar()
+		bar.placeholder = "Search your hero"
+		bar.backgroundColor = UIColor(named: "headerColor")
+		bar.searchBarStyle = .minimal
+		return bar
 	}()
 
 
@@ -50,12 +50,12 @@ class CustomNavigationTitle: UITableViewHeaderFooterView
 	private func configureContents() {
 		image.translatesAutoresizingMaskIntoConstraints = false
 		title.translatesAutoresizingMaskIntoConstraints = false
-		resultSearchController.searchBar.translatesAutoresizingMaskIntoConstraints = false
+		searchBar.translatesAutoresizingMaskIntoConstraints = false
 
 		contentView.addSubview(image)
 		contentView.addSubview(title)
 		contentView.backgroundColor = UIColor(named: "headerColor")
-		contentView.addSubview(resultSearchController.searchBar)
+		contentView.addSubview(searchBar)
 
 
 		NSLayoutConstraint.activate([
@@ -72,12 +72,11 @@ class CustomNavigationTitle: UITableViewHeaderFooterView
 			title.centerYAnchor.constraint(equalTo: image.centerYAnchor),
 			contentView.heightAnchor.constraint(equalToConstant: 120),
 
-			resultSearchController.searchBar.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
-			resultSearchController.searchBar.centerXAnchor.constraint(equalTo: contentView.centerXAnchor,
-																  constant: 5),
-			resultSearchController.searchBar.topAnchor.constraint(equalTo: image.bottomAnchor)
-
-
+			searchBar.topAnchor.constraint(equalTo: image.bottomAnchor, constant: 5),
+			searchBar.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -5),
+			searchBar.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
+			searchBar.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
+			searchBar.trailingAnchor.constraint(equalTo: contentView.trailingAnchor)
 		])
 	}
 }
