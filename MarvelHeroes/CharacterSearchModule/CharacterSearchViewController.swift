@@ -12,6 +12,8 @@ protocol ICharacterView: AnyObject {
 	func show(heroes: [ComicCharacter])
 
 	func show(url: URL)
+
+	func showStub()
 }
 
 class CharacterTableViewController: UITableViewController
@@ -24,6 +26,9 @@ class CharacterTableViewController: UITableViewController
 
 	private var imagesUrls = [URL]()
 	private var loader = CharacterImageLoader()
+
+	private var queryText: String = ""
+	private var dummy = DummyView(frame: .zero, queryText: "")
 
 
 	init(presenter: ICharacterSearchPresenter) {
@@ -43,6 +48,23 @@ class CharacterTableViewController: UITableViewController
 
 		registerCells()
 		setTableViewHeights()
+		setUpDummyView()
+	}
+
+	private func setUpDummyView() {
+		self.view.addSubview(dummy)
+		dummy.alpha = 1
+
+
+//		dummy.topAnchor.constraint(equalTo: tableView..bottomAnchor ?? tableView.topAnchor).isActive = true
+//		dummy.bottomAnchor.constraint(equalTo: tableView.bottomAnchor).isActive = true
+//		dummy.leadingAnchor.constraint(equalTo: tableView.leadingAnchor).isActive = true
+//		dummy.trailingAnchor.constraint(equalTo: tableView.trailingAnchor).isActive = true
+		dummy.topAnchor.constraint(equalTo: tableView.topAnchor, constant: 200).isActive = true
+		dummy.isHidden = true
+
+		dummy.translatesAutoresizingMaskIntoConstraints = false
+
 	}
 //MARK: - TableView Layout methods
 
@@ -115,12 +137,22 @@ class CharacterTableViewController: UITableViewController
 }
 
 extension CharacterTableViewController: ICharacterView {
+	func showStub() {
+		print("Show me what you got")
+		dummy.isHidden = false
+		charactersArray = []
+		tableView.reloadData()
+
+
+	}
+
 	func show(url: URL) {
 		imagesUrls.append(url)
 	}
 
 	func show(heroes: [ComicCharacter]) {
 		charactersArray = heroes
+		dummy.isHidden = true
 		tableView.reloadData()
 	}
 }
@@ -144,7 +176,9 @@ extension CharacterTableViewController: UISearchTextFieldDelegate
 
 	func textFieldDidEndEditing(_ textField: UITextField) {
 		if let hero = textField.text {
+
 			print("Should start searching for \(hero)")
+			queryText = hero
 			presenter.loadCharacters(with: hero)
 		} else {return}
 //		textField.text = ""

@@ -11,7 +11,10 @@ import UIKit
 
 protocol ICharacterRepository
 {
-	func getCharacters(with nameParameter: String?, completion: @escaping (Result<ComicCharacter, Error>) -> Void)
+	func getCharacters(with nameParameter: String?, completion: @escaping (Result<ComicCharacter, SearchError>) -> Void)
+}
+enum SearchError: Error {
+	case noMatches
 }
 
 class CharacterRepository: ICharacterRepository
@@ -21,19 +24,16 @@ class CharacterRepository: ICharacterRepository
 
 
 	//getCharacters должен принимать в аргумент инициализацию структуры
-	public func getCharacters(with nameParameter: String?, completion: @escaping (Result<ComicCharacter, Error>) -> Void) {
+	public func getCharacters(with nameParameter: String?, completion: @escaping (Result<ComicCharacter, SearchError>) -> Void) {
 
-		// Запрос без параметров
-		//response содержит dataConteiner'ы
-		//в качестве аргумента send принимает инициализацию структуры GetCharacters
 		apiClient.send(CharactersFromResponse(), nameParameter: nameParameter) { response in
 
 			_ = response.map { dataContainer in
+				if dataContainer.results.isEmpty {
+					completion(.failure(.noMatches))
+				}
 				for character in dataContainer.results {
 						completion(.success(character))
-
-					print("  Title: \(character.name ?? "Unnamed character")")
-					print("  Thumbnail: \(character.thumbnail?.url.absoluteString ?? "None")")
 				}
 			}
 		}
