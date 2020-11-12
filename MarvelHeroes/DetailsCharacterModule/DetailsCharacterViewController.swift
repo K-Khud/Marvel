@@ -16,9 +16,33 @@ protocol IDetailsCharacterViewController: AnyObject
 
 class DetailsCharacterViewController: UIViewController {
 
-	let presenter: DetailCharacterPresenter
+	private let presenter: DetailCharacterPresenter
 
-	var textLabel = UILabel()
+	private var textLabel: UILabel = {
+		let label = UILabel()
+		label.textAlignment = .left
+		label.font = .systemFont(ofSize: 20)
+		label.numberOfLines = 0
+		label.backgroundColor = .clear
+		label.textColor = UIColor(named: "headerTitleColor")
+		return label
+	}()
+	private var titleLabel: UILabel = {
+		let label = UILabel()
+		label.textAlignment = .left
+		label.font = .boldSystemFont(ofSize: 32)
+		label.numberOfLines = 0
+		label.backgroundColor = .clear
+		label.textColor = UIColor(named: "headerTitleColor")
+		return label
+	}()
+
+
+	private var image: UIImageView = {
+		let backImageView = UIImageView(image: UIImage(named: "UIImage_1"))
+		backImageView.contentMode = .scaleToFill
+		return backImageView
+	}()
 
 	init(presenter: DetailCharacterPresenter) {
 		self.presenter = presenter
@@ -31,33 +55,42 @@ class DetailsCharacterViewController: UIViewController {
 
 	override func viewDidLoad() {
 		super.viewDidLoad()
-		setupView()
-
 		loadData()
+		setupTitleLabel()
+		setupLabel()
 	}
 
 
 	func loadData() {
 		textLabel.text = presenter.loadCharacterData().description
+		titleLabel.text = presenter.loadCharacterData().name
 	}
 
-	func setupView() {
-		view.addSubview(textLabel)
-		textLabel.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor).isActive = true
-		textLabel.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor).isActive = true
-		textLabel.leftAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leftAnchor).isActive = true
-		textLabel.rightAnchor.constraint(equalTo: view.safeAreaLayoutGuide.rightAnchor).isActive = true
-		textLabel.translatesAutoresizingMaskIntoConstraints = false
-		textLabel.backgroundColor = .blue
-		textLabel.textColor = .magenta
+	func setupTitleLabel() {
+		view.addSubview(titleLabel)
+		titleLabel.translatesAutoresizingMaskIntoConstraints = false
 
+		titleLabel.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 20).isActive = true
+		titleLabel.leftAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leftAnchor, constant: 10).isActive = true
+		titleLabel.rightAnchor.constraint(equalTo: view.safeAreaLayoutGuide.rightAnchor, constant: -10).isActive = true
+	}
+
+	func setupLabel() {
+		view.addSubview(textLabel)
+		textLabel.translatesAutoresizingMaskIntoConstraints = false
+
+		textLabel.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 20).isActive = true
+		textLabel.leftAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leftAnchor, constant: 10).isActive = true
+		textLabel.rightAnchor.constraint(equalTo: view.safeAreaLayoutGuide.rightAnchor, constant: -10).isActive = true
 	}
 }
 
-extension DetailsCharacterViewController: IDetailsCharacterViewController {
-
+extension DetailsCharacterViewController: IDetailsCharacterViewController
+{
 	func show(character: ComicCharacter) {
+		titleLabel.text = character.name
 		textLabel.text = character.description
+
 		updateViewConstraints()
 	}
 }

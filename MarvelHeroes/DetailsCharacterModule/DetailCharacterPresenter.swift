@@ -31,6 +31,4 @@ class DetailCharacterPresenter: IDetailContactPresenter
 	func loadCharacterData() -> ComicCharacter {
 		return repository.getCharacterDetails()
 	}
-
-
 }

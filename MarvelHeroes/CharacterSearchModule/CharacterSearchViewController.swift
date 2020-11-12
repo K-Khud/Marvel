@@ -25,7 +25,6 @@ class CharacterTableViewController: UIViewController, UITableViewDelegate, UITab
 	private let imagePlaceholder = UIImage(named: "UIImage_1")
 	private let tableView = UITableView()
 
-
 	private var imagesUrls = [URL]()
 	private var loader = CharacterImageLoader()
 
@@ -134,7 +133,6 @@ class CharacterTableViewController: UIViewController, UITableViewDelegate, UITab
 					DispatchQueue.main.async {
 						cell.imageView?.image = image
 						self.tableView.layoutSubviews()
-
 					}
 				} catch {
 					print(error)
@@ -191,5 +189,4 @@ extension CharacterTableViewController: UISearchTextFieldDelegate
 			presenter.loadCharacters(with: hero)
 		} else {return}
 	}
-
 }
