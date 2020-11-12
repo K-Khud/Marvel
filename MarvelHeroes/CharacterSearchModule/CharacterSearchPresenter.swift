@@ -14,8 +14,6 @@ protocol ICharacterSearchPresenter
 	func showDetail(of character: ComicCharacter)
 
 	func loadCharacters(with nameParameter: String?)
-
-	func search(hero: String)
 }
 
 class CharactersSearchPresenter
@@ -56,11 +54,6 @@ extension CharactersSearchPresenter: ICharacterSearchPresenter
 				}
 			}
 		}
-	}
-
-	func search(hero: String) {
-		
-
 	}
 
 	func showDetail(of character: ComicCharacter) {

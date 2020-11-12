@@ -8,7 +8,8 @@
 
 import UIKit
 
-protocol ICharacterView: AnyObject {
+protocol ICharacterView: AnyObject
+{
 	func show(heroes: [ComicCharacter])
 
 	func show(url: URL)
@@ -16,18 +17,23 @@ protocol ICharacterView: AnyObject {
 	func showStub()
 }
 
-class CharacterTableViewController: UITableViewController
+class CharacterTableViewController: UIViewController, UITableViewDelegate, UITableViewDataSource
 {
 	private var presenter: ICharacterSearchPresenter //strong
 	
 	private var charactersArray = [ComicCharacter]()
 	private let imagePlaceholder = UIImage(named: "UIImage_1")
+	private let tableView = UITableView()
 
 
 	private var imagesUrls = [URL]()
 	private var loader = CharacterImageLoader()
 
-	private var queryText: String = ""
+	private var queryText: String = "" {
+		didSet {
+			dummy.label.text = "No matches for the query \"" + queryText + "\""
+		}
+	}
 	private var dummy = DummyView(frame: .zero, queryText: "")
 
 
@@ -44,23 +50,31 @@ class CharacterTableViewController: UITableViewController
 		presenter.loadCharacters(with: nil)
 		super.viewDidLoad()
 
-		self.tableView.dataSource = self
+		tableView.dataSource = self
+		tableView.delegate = self
 
+		setupTableView()
 		registerCells()
 		setTableViewHeights()
 		setUpDummyView()
 	}
 
+	private func setupTableView() {
+		view.addSubview(tableView)
+		tableView.translatesAutoresizingMaskIntoConstraints = false
+		tableView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor).isActive = true
+		tableView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor).isActive = true
+		tableView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor).isActive = true
+		tableView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor).isActive = true
+	}
+
 	private func setUpDummyView() {
-		self.view.addSubview(dummy)
-		dummy.alpha = 1
-
-
-//		dummy.topAnchor.constraint(equalTo: tableView..bottomAnchor ?? tableView.topAnchor).isActive = true
-//		dummy.bottomAnchor.constraint(equalTo: tableView.bottomAnchor).isActive = true
-//		dummy.leadingAnchor.constraint(equalTo: tableView.leadingAnchor).isActive = true
-//		dummy.trailingAnchor.constraint(equalTo: tableView.trailingAnchor).isActive = true
-		dummy.topAnchor.constraint(equalTo: tableView.topAnchor, constant: 200).isActive = true
+		let bottomConstant = tabBarController?.tabBar.frame.height
+		view.addSubview(dummy)
+		dummy.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 120).isActive = true
+		dummy.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: bottomConstant ?? 0).isActive = true
+		dummy.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor).isActive = true
+		dummy.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor).isActive = true
 		dummy.isHidden = true
 
 		dummy.translatesAutoresizingMaskIntoConstraints = false
@@ -78,24 +92,25 @@ class CharacterTableViewController: UITableViewController
 		tableView.register(CustomNavigationTitle.self, forHeaderFooterViewReuseIdentifier: "sectionHeader")
 	}
 
-	override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {return 80}
+	func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {return 80}
 
-	//MARK: - TableView Header setup
+	//MARK: - TableView Delegate methods
 
-	override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+	func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+		return 120
+	}
+
+	func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
 		let headerView = tableView.dequeueReusableHeaderFooterView(withIdentifier:
 																	"sectionHeader") as? CustomNavigationTitle
 		headerView?.searchBar.searchTextField.delegate = self
 		return headerView
 	}
-	//MARK: - UITableViewDataSource
+	//MARK: - TableView DataSource methods
 
-	override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-		return charactersArray.count
-	}
+	func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int { return charactersArray.count }
 
-
-	override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+	func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
 		let cell = UITableViewCell(style: .subtitle, reuseIdentifier: "cell")
 
 		cell.accessoryType = .disclosureIndicator
@@ -126,24 +141,20 @@ class CharacterTableViewController: UITableViewController
 				}
 			}
 		}
-
 		return cell
 	}
 
-
-	override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+	func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
 		presenter.showDetail(of: charactersArray[indexPath.row])
 	}
 }
 
-extension CharacterTableViewController: ICharacterView {
+extension CharacterTableViewController: ICharacterView
+{
 	func showStub() {
-		print("Show me what you got")
 		dummy.isHidden = false
 		charactersArray = []
 		tableView.reloadData()
-
-
 	}
 
 	func show(url: URL) {
@@ -176,12 +187,9 @@ extension CharacterTableViewController: UISearchTextFieldDelegate
 
 	func textFieldDidEndEditing(_ textField: UITextField) {
 		if let hero = textField.text {
-
-			print("Should start searching for \(hero)")
 			queryText = hero
 			presenter.loadCharacters(with: hero)
 		} else {return}
-//		textField.text = ""
 	}
 
 }

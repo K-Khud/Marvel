@@ -23,7 +23,6 @@ class CharacterRepository: ICharacterRepository
 									privateKey: MarvelKeys.privateKey.rawValue) //strong
 
 
-	//getCharacters должен принимать в аргумент инициализацию структуры
 	public func getCharacters(with nameParameter: String?, completion: @escaping (Result<ComicCharacter, SearchError>) -> Void) {
 
 		apiClient.send(CharactersFromResponse(), nameParameter: nameParameter) { response in

@@ -9,9 +9,9 @@
 import Foundation
 
 public protocol APIRequest: Encodable {
-	// Response будет завернут в DataContainer
+	// Response is wrapped into DataContainer
 	associatedtype Response: Decodable
 
-	// Последняя часть URL
+	// Last part of the URL
 	var resourceName: String { get }
 }

@@ -57,7 +57,6 @@ class CustomNavigationTitle: UITableViewHeaderFooterView
 		contentView.backgroundColor = UIColor(named: "headerColor")
 		contentView.addSubview(searchBar)
 
-
 		NSLayoutConstraint.activate([
 			image.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
 			image.widthAnchor.constraint(equalToConstant: 70),
