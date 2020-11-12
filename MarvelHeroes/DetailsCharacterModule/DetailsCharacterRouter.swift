@@ -29,7 +29,6 @@ extension DetailsCharacterRouter: IDetailsCharacterRouter
 {
 	func showDetail(with character: ComicCharacter) {
 		let detailViewController = factory.getDetailsCharacterModule(character: character) 
-//			detailViewController.view.backgroundColor = .white
 			viewController?.navigationController?.pushViewController(detailViewController,
 																	 animated: true)
 

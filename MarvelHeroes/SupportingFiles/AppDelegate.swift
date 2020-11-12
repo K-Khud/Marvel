@@ -30,16 +30,20 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 		authorsViewController.tabBarItem = UITabBarItem(title: "Authors", image: authorsImage, tag: 2)
 
 
-		tabBarViewController.viewControllers = [charactersViewController, comicsViewController, authorsViewController]
+		tabBarViewController.tabBarItem.badgeColor = UIColor(named: "headerColor")
+		let controllers = [charactersViewController, comicsViewController, authorsViewController]
+			.map{UINavigationController(rootViewController: $0)}
 
-		let navigationViewController = UINavigationController(rootViewController: tabBarViewController)
-		navigationViewController.navigationBar.shadowImage = UIImage()
-		navigationViewController.navigationBar.barTintColor = UIColor(named: "headerColor")
-		navigationViewController.navigationBar.isTranslucent = false
+		for controller in controllers {
+			controller.navigationBar.shadowImage = UIImage()
+			controller.navigationBar.barTintColor = UIColor(named: "headerColor")
+			controller.navigationBar.isTranslucent = false
+		}
 
+		tabBarViewController.viewControllers = controllers
 
 		window = UIWindow(frame: UIScreen.main.bounds)
-		window?.rootViewController = navigationViewController
+		window?.rootViewController = tabBarViewController
 		window?.makeKeyAndVisible()
 
 		
