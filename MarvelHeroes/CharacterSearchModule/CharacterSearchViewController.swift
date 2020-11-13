@@ -12,7 +12,7 @@ protocol ICharacterView: AnyObject
 {
 	func show(heroes: [ComicCharacter])
 
-	func show(url: URL)
+	func show(image: UIImage)
 
 	func showStub()
 }
@@ -26,8 +26,7 @@ class CharacterTableViewController: UIViewController, UITableViewDelegate, UITab
 	private let imagePlaceholder = UIImage(named: "UIImage_1")
 	private let tableView = UITableView()
 
-	private var imagesUrls = [URL]()
-	private var loader = CharacterImageLoader()
+//	private var loader = CharacterImageLoader()
 
 	private var queryText: String = "" {
 		didSet {
@@ -114,10 +113,14 @@ class CharacterTableViewController: UIViewController, UITableViewDelegate, UITab
 		let cell = UITableViewCell(style: .subtitle, reuseIdentifier: "cell")
 
 		cell.accessoryType = .disclosureIndicator
-		cell.imageView?.image = imagePlaceholder
 		cell.imageView?.layer.masksToBounds = true
 		cell.imageView?.layer.cornerRadius = 40
 
+		if imagesArray.count - 1 >= indexPath.row {
+			cell.imageView?.image = imagesArray[indexPath.row]
+		} else {
+			cell.imageView?.image = imagePlaceholder
+		}
 		if let name = charactersArray[indexPath.row].name, let details = charactersArray[indexPath.row].description {
 
 			cell.textLabel?.text = name
@@ -125,19 +128,19 @@ class CharacterTableViewController: UIViewController, UITableViewDelegate, UITab
 			cell.detailTextLabel?.textColor = .systemGray
 			cell.detailTextLabel?.font = .systemFont(ofSize: 14)
 
-			let numberForImage = imagesUrls[indexPath.row]
+//			let numberForImage = imagesUrls[indexPath.row]
 
-			let _ = loader.loadImage(numberForImage) { result in
-				do {
-					let image = try result.get()
-					DispatchQueue.main.async {
-						cell.imageView?.image = image
-						self.tableView.layoutSubviews()
-					}
-				} catch {
-					print(error)
-				}
-			}
+//			let _ = loader.loadImage(numberForImage) { result in
+//				do {
+//					let image = try result.get()
+//					DispatchQueue.main.async {
+//						cell.imageView?.image = image
+//						self.tableView.layoutSubviews()
+//					}
+//				} catch {
+//					print(error)
+//				}
+//			}
 		}
 		return cell
 	}
@@ -156,8 +159,10 @@ extension CharacterTableViewController: ICharacterView
 		tableView.reloadData()
 	}
 
-	func show(url: URL) {
-		imagesUrls.append(url)
+	func show(image: UIImage) {
+		imagesArray.append(image)
+		tableView.reloadData()
+		tableView.layoutSubviews()
 	}
 
 	func show(heroes: [ComicCharacter]) {
@@ -187,6 +192,7 @@ extension CharacterTableViewController: UISearchTextFieldDelegate
 	func textFieldDidEndEditing(_ textField: UITextField) {
 		if let hero = textField.text {
 			queryText = hero
+			imagesArray = []
 			presenter.loadCharacters(with: hero)
 		} else {return}
 	}

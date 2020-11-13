@@ -21,10 +21,33 @@ class CharactersSearchPresenter
 	private var repository: ICharacterRepository //strong
 	private var router: ICharacterSearchRouter //strong
 	weak var view: ICharacterView? //weak
+	private var loader = CharacterImageLoader()
+
+
+	private var imagesUrls = [URL]()
+
 
 	init(repository: ICharacterRepository, router: ICharacterSearchRouter) {
 		self.repository = repository
 		self.router = router
+	}
+
+	private func loadImages() {
+		if let newUrl = imagesUrls.popLast() {
+			print("newUrl")
+
+			print(newUrl)
+			let _ = loader.loadImage(newUrl) { result in
+				do {
+					let image = try result.get()
+					DispatchQueue.main.async {
+						self.view?.show(image: image)
+					}
+				} catch {
+					print(error)
+				}
+			}
+		}
 	}
 }
 
@@ -32,15 +55,17 @@ extension CharactersSearchPresenter: ICharacterSearchPresenter
 {
 	func loadCharacters(with nameParameter: String?) {
 		var charactersArray = [ComicCharacter]()
+		imagesUrls = []
 		repository.getCharacters(with: nameParameter) { result in
-			
+
 			let token = result.map({ comicCharacter in
 
-				if let url = comicCharacter.thumbnail?.url {
-					self.view?.show(url: url)
-				}
 
 				DispatchQueue.main.async {
+					if let newUrl = comicCharacter.thumbnail?.url {
+						self.imagesUrls.append(newUrl)
+						self.loadImages()
+					}
 					charactersArray.append(comicCharacter)
 					self.view?.show(heroes: charactersArray)
 				}
