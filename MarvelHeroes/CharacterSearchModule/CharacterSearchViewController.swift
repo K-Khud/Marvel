@@ -15,25 +15,15 @@ protocol ICharacterViewController: AnyObject
 	func showStub()
 }
 
-class CharacterTableViewController: UIViewController, UITableViewDelegate, UITableViewDataSource
+class CharacterTableViewController: SearchViewControllerTemplate, UITableViewDataSource
 {
 	private var presenter: ICharacterSearchPresenter //strong
 	
 	private var charactersArray = [ComicCharacter]()
-	private var imagesDict = [URL : UIImage]()
-	private let tableView = UITableView()
-
-	private var queryText: String = "" {
-		didSet {
-			dummy.label.text = "No matches for the query \"" + queryText + "\""
-		}
-	}
-	private var dummy = DummyView(frame: .zero, queryText: "")
-
 
 	init(presenter: ICharacterSearchPresenter) {
 		self.presenter = presenter
-		super.init(nibName: nil, bundle: nil)
+		super.init()
 	}
 
 	required init?(coder aDecoder: NSCoder) {
@@ -45,60 +35,9 @@ class CharacterTableViewController: UIViewController, UITableViewDelegate, UITab
 		super.viewDidLoad()
 
 		tableView.dataSource = self
-		tableView.delegate = self
-
-		setupTableView()
-		registerCells()
-		setTableViewHeights()
-		setUpDummyView()
+//		tableView.delegate = self
 	}
 
-	private func setupTableView() {
-		view.addSubview(tableView)
-		tableView.translatesAutoresizingMaskIntoConstraints = false
-		tableView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor).isActive = true
-		tableView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor).isActive = true
-		tableView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor).isActive = true
-		tableView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor).isActive = true
-	}
-
-	private func setUpDummyView() {
-		let bottomConstant = tabBarController?.tabBar.frame.height
-		view.addSubview(dummy)
-		dummy.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 120).isActive = true
-		dummy.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: bottomConstant ?? 0).isActive = true
-		dummy.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor).isActive = true
-		dummy.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor).isActive = true
-		dummy.isHidden = true
-		dummy.translatesAutoresizingMaskIntoConstraints = false
-
-	}
-	//MARK: - TableView Layout methods
-
-	private func setTableViewHeights() {
-		tableView.estimatedSectionHeaderHeight = 120
-		tableView.rowHeight = UITableView.automaticDimension
-	}
-
-	private func registerCells() {
-		tableView.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
-		tableView.register(CustomSectionTitle.self, forHeaderFooterViewReuseIdentifier: "sectionHeader")
-	}
-
-	func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {return 80}
-
-	//MARK: - TableView Delegate methods
-
-	func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-		return 120
-	}
-
-	func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-		let headerView = tableView.dequeueReusableHeaderFooterView(withIdentifier:
-																	"sectionHeader") as? CustomSectionTitle
-		headerView?.searchBar.searchTextField.delegate = self
-		return headerView
-	}
 	//MARK: - TableView DataSource methods
 
 	func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int { return charactersArray.count }
@@ -153,21 +92,8 @@ extension CharacterTableViewController: ICharacterViewController
 }
 //MARK: - UITextFieldDelegate
 
-extension CharacterTableViewController: UISearchTextFieldDelegate
+extension CharacterTableViewController
 {
-	func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-		textField.endEditing(true)
-		return true
-	}
-
-	func textFieldShouldEndEditing(_ textField: UITextField) -> Bool {
-		if textField.text != "" {
-			return true
-		} else {
-			return false
-		}
-	}
-
 	func textFieldDidEndEditing(_ textField: UITextField) {
 		if let hero = textField.text {
 			queryText = hero
