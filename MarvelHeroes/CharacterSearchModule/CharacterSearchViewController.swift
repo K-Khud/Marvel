@@ -11,9 +11,7 @@ import UIKit
 protocol ICharacterView: AnyObject
 {
 	func show(heroes: [ComicCharacter])
-
-	func show(image: UIImage)
-
+	func show(image: UIImage, for url: URL)
 	func showStub()
 }
 
@@ -22,7 +20,7 @@ class CharacterTableViewController: UIViewController, UITableViewDelegate, UITab
 	private var presenter: ICharacterSearchPresenter //strong
 	
 	private var charactersArray = [ComicCharacter]()
-	private var imagesArray = [UIImage]()
+	private var imagesDict = [URL : UIImage]()
 	private let imagePlaceholder = UIImage(named: "UIImage_1")
 	private let tableView = UITableView()
 
@@ -73,11 +71,10 @@ class CharacterTableViewController: UIViewController, UITableViewDelegate, UITab
 		dummy.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor).isActive = true
 		dummy.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor).isActive = true
 		dummy.isHidden = true
-
 		dummy.translatesAutoresizingMaskIntoConstraints = false
 
 	}
-//MARK: - TableView Layout methods
+	//MARK: - TableView Layout methods
 
 	private func setTableViewHeights() {
 		tableView.estimatedSectionHeaderHeight = 120
@@ -115,20 +112,18 @@ class CharacterTableViewController: UIViewController, UITableViewDelegate, UITab
 		cell.imageView?.layer.masksToBounds = true
 		cell.imageView?.layer.cornerRadius = 40
 
-		if imagesArray.count - 1 >= indexPath.row {
-			let cropSide = min(imagesArray[indexPath.row].size.width, imagesArray[indexPath.row].size.height)
-			if let newImage = imagesArray[indexPath.row].cgImage?.cropping(to: CGRect(x: 0, y: 0, width: cropSide, height: cropSide)) {
-				cell.imageView?.image = UIImage(cgImage: (newImage))
-			}
-		}
-
-		if let name = charactersArray[indexPath.row].name, let details = charactersArray[indexPath.row].description {
-
+		if let name = charactersArray[indexPath.row].name, let details = charactersArray[indexPath.row].description, let url = charactersArray[indexPath.row].thumbnail?.url {
 			cell.textLabel?.text = name
 			cell.detailTextLabel?.text = details != "" ? details : "No info"
 			cell.detailTextLabel?.textColor = .systemGray
 			cell.detailTextLabel?.font = .systemFont(ofSize: 14)
 
+			if let imageForCrop = imagesDict[url] {
+				let cropSide = min(imageForCrop.size.width, imageForCrop.size.height)
+				if let newImage = imageForCrop.cgImage?.cropping(to: CGRect(x: 0, y: 0, width: cropSide, height: cropSide)) {
+					cell.imageView?.image = UIImage(cgImage: (newImage))
+				}
+			}
 		}
 		return cell
 	}
@@ -147,8 +142,8 @@ extension CharacterTableViewController: ICharacterView
 		tableView.reloadData()
 	}
 
-	func show(image: UIImage) {
-		imagesArray.append(image)
+	func show(image: UIImage, for url: URL) {
+		imagesDict.updateValue(image, forKey: url)
 		tableView.reloadData()
 	}
 
@@ -163,7 +158,6 @@ extension CharacterTableViewController: ICharacterView
 extension CharacterTableViewController: UISearchTextFieldDelegate
 {
 	func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-		print(textField.text!)
 		textField.endEditing(true)
 		return true
 	}
@@ -179,7 +173,7 @@ extension CharacterTableViewController: UISearchTextFieldDelegate
 	func textFieldDidEndEditing(_ textField: UITextField) {
 		if let hero = textField.text {
 			queryText = hero
-			imagesArray = []
+			imagesDict.removeAll()
 			presenter.loadCharacters(with: hero)
 		} else {return}
 	}

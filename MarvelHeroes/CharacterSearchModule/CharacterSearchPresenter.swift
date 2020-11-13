@@ -38,7 +38,7 @@ class CharactersSearchPresenter
 				do {
 					let image = try result.get()
 					DispatchQueue.main.async {
-						self.view?.show(image: image)
+						self.view?.show(image: image, for: newUrl)
 					}
 				} catch {
 					print(error)
