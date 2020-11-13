@@ -140,7 +140,6 @@
 				02A1750224F03C8C0086DF84 /* DetailCharacterPresenter.swift */,
 				028697352553065C0003B362 /* DetailsCharacterRouter.swift */,
 				02515B522551BE09001B4357 /* DetailsCharacterViewController.swift */,
-				02E3C9DE255EF5A700746A3E /* DetailsViewControllerTemplate.swift */,
 			);
 			path = DetailsCharacterModule;
 			sourceTree = "<group>";
@@ -160,6 +159,7 @@
 			isa = PBXGroup;
 			children = (
 				02BA45CC255EEFD6007BCE7F /* SearchViewControllerTemplate.swift */,
+				02E3C9DE255EF5A700746A3E /* DetailsViewControllerTemplate.swift */,
 				0286973E255414960003B362 /* CustomSectionTitle.swift */,
 				0283BD69255C5A3A00074572 /* DummyView.swift */,
 			);

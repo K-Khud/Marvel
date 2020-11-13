@@ -13,12 +13,10 @@ protocol IDetailsCharacterViewController: AnyObject
 {
 }
 
-class DetailsCharacterViewController: DetailsViewControllerTemplate
+class DetailsCharacterViewController: DetailsViewControllerTemplate, IDetailsCharacterViewController
 {
 
 	private let presenter: IDetailCharacterPresenter
-
-
 
 	init(presenter: IDetailCharacterPresenter) {
 		self.presenter = presenter
@@ -34,15 +32,10 @@ class DetailsCharacterViewController: DetailsViewControllerTemplate
 		loadData()
 	}
 
-
 	//MARK: - Load data method
 	func loadData() {
 		textLabel.text = presenter.loadCharacterData().0.description
 		titleLabel.text = presenter.loadCharacterData().0.name
 		image.image = presenter.loadCharacterData().1
 	}
-}
-
-extension DetailsCharacterViewController: IDetailsCharacterViewController
-{
 }
