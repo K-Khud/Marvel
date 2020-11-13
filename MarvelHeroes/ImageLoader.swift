@@ -9,17 +9,17 @@
 import Foundation
 import UIKit
 
-protocol ICharacterImageLoader
+protocol IImageLoader
 {
 	func loadImage(_ url: URL, _ completion: @escaping (Result<UIImage, Error>) -> Void) -> UUID?
 	func cancelLoad(_ uuid: UUID)
 }
 
-class CharacterImageLoader: ICharacterImageLoader
+class ImageLoader: IImageLoader
 {
 	private var loadedImages = [URL: UIImage]()
 	private var runningRequests = [UUID: URLSessionDataTask]()
-	static let loader = CharacterImageLoader()
+	static let loader = ImageLoader()
 
 //MARK: - ICharacterImageLoader
 

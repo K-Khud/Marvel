@@ -12,9 +12,9 @@ public class MarvelAPIClient {
 		self.privateKey = privateKey
 	}
 
-	public func send<T: APIRequest>(_ request: T, nameParameter: String?,
+	public func send<T: APIRequest>(_ request: T,
 									completion: @escaping (Result<DataContainer<T.Response>, Error>) -> Void) {
-		let endpoint = self.endpoint(for: request, nameParameter: nameParameter)
+		let endpoint = self.endpoint(for: request)
 
 		let task = session.dataTask(with: URLRequest(url: endpoint)) { data, response, error in
 			if let data = data {
@@ -39,7 +39,7 @@ public class MarvelAPIClient {
 	}
 
 	// Everything needed for a public request to Marvel servers is encoded directly in this URL
-	private func endpoint<T: APIRequest>(for request: T, nameParameter: String?) -> URL {
+	private func endpoint<T: APIRequest>(for request: T) -> URL {
 		guard let baseUrl = URL(string: request.resourceName, relativeTo: baseEndpointUrl) else {
 			fatalError("Bad resourceName: \(request.resourceName)")
 		}
@@ -49,14 +49,12 @@ public class MarvelAPIClient {
 		let timestamp = "\(Date().timeIntervalSince1970)"
 		let hash = "\(timestamp)\(privateKey)\(publicKey)".md5
 
-		var commonQueryItems = [
+		let commonQueryItems = [
 			URLQueryItem(name: "ts", value: timestamp),
 			URLQueryItem(name: "hash", value: hash),
 			URLQueryItem(name: "apikey", value: publicKey),
 		]
-		if let nameStartsWith = nameParameter {
-			commonQueryItems.append(URLQueryItem(name: "nameStartsWith", value: nameStartsWith))
-		}
+
 		let customQueryItems: [URLQueryItem]
 
 		do {

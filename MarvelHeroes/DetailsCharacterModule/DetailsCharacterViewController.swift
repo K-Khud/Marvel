@@ -62,8 +62,6 @@ class DetailsCharacterViewController: UIViewController {
 		setGradient()
 		setupTitleLabel()
 		setupLabel()
-		self.navigationController?.navigationBar.isTranslucent = false
-		self.navigationController?.view.backgroundColor = .clear
 	}
 
 
@@ -78,7 +76,7 @@ class DetailsCharacterViewController: UIViewController {
 		image.translatesAutoresizingMaskIntoConstraints = false
 
 		image.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor).isActive = true
-
+		
 		image.leftAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leftAnchor).isActive = true
 		image.rightAnchor.constraint(equalTo: view.safeAreaLayoutGuide.rightAnchor).isActive = true
 		image.heightAnchor.constraint(equalToConstant: image.frame.width).isActive = true

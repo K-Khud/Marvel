@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-class CustomNavigationTitle: UITableViewHeaderFooterView
+class CustomSectionTitle: UITableViewHeaderFooterView
 {
 	var searchBar: UISearchBar = {
 		let bar = UISearchBar()
@@ -18,7 +18,6 @@ class CustomNavigationTitle: UITableViewHeaderFooterView
 		bar.searchBarStyle = .minimal
 		return bar
 	}()
-
 
 	private var title: UILabel = {
 		let label = UILabel()

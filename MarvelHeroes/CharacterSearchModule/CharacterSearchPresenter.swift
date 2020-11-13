@@ -21,11 +21,9 @@ class CharactersSearchPresenter
 	private var repository: ICharacterRepository //strong
 	private var router: ICharacterSearchRouter //strong
 	weak var view: ICharacterView? //weak
-	private var loader = CharacterImageLoader()
-
+	private var loader = ImageLoader()
 
 	private var imagesUrls = [URL]()
-
 
 	init(repository: ICharacterRepository, router: ICharacterSearchRouter) {
 		self.repository = repository

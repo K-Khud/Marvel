@@ -82,7 +82,7 @@ class CharacterTableViewController: UIViewController, UITableViewDelegate, UITab
 
 	private func registerCells() {
 		tableView.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
-		tableView.register(CustomNavigationTitle.self, forHeaderFooterViewReuseIdentifier: "sectionHeader")
+		tableView.register(CustomSectionTitle.self, forHeaderFooterViewReuseIdentifier: "sectionHeader")
 	}
 
 	func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {return 80}
@@ -95,7 +95,7 @@ class CharacterTableViewController: UIViewController, UITableViewDelegate, UITab
 
 	func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
 		let headerView = tableView.dequeueReusableHeaderFooterView(withIdentifier:
-																	"sectionHeader") as? CustomNavigationTitle
+																	"sectionHeader") as? CustomSectionTitle
 		headerView?.searchBar.searchTextField.delegate = self
 		return headerView
 	}
