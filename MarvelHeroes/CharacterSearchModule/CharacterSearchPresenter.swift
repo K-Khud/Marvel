@@ -34,9 +34,6 @@ class CharactersSearchPresenter
 
 	private func loadImages() {
 		if let newUrl = imagesUrls.popLast() {
-			print("newUrl")
-
-			print(newUrl)
 			let _ = loader.loadImage(newUrl) { result in
 				do {
 					let image = try result.get()
