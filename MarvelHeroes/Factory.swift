@@ -49,6 +49,20 @@ class ModulesFactory {
 		return viewController
 	}
 
+	func getComicsDetailsModule(comics: Comic, image: UIImage?) -> ComicsDetailsViewController {
+		let router = ComicsDetailsRouter(factory: self)
+		let repository = ComicsDetailsRepository(comics: comics, image: image)
+
+		let presenter = ComicsDetailPresenter(repository: repository, router: router)
+		let viewController = ComicsDetailsViewController(presenter: presenter)
+
+		presenter.view = viewController
+		router.viewController = viewController
+
+		return viewController
+	}
+
+
 	func getAuthorsSearchModule() -> AuthorsSearchViewController {
 		let repository = AuthorsSearchRepository()
 		let router = AuthorsSearchRouter(factory: self)

@@ -9,13 +9,13 @@
 import Foundation
 import UIKit
 
-protocol IDetailContactPresenter
+protocol IDetailCharacterPresenter
 {
 
 	func loadCharacterData() -> (ComicCharacter, UIImage?)
 }
 
-class DetailCharacterPresenter: IDetailContactPresenter
+class DetailCharacterPresenter: IDetailCharacterPresenter
 {
 	weak var view: IDetailsCharacterViewController? //weak
 	private var router: IDetailsCharacterRouter //strong

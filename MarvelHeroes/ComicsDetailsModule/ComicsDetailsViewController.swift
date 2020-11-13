@@ -1,23 +1,21 @@
 //
-//  DetailsCharacterViewController.swift
+//  ComicsDetailsViewController.swift
 //  MarvelHeroes
 //
-//  Created by Ekaterina Khudzhamkulova on 3.11.2020.
+//  Created by Ekaterina Khudzhamkulova on 13.11.2020.
 //  Copyright © 2020 Ekaterina. All rights reserved.
 //
 
 import Foundation
 import UIKit
 
-protocol IDetailsCharacterViewController: AnyObject
+protocol IComicsDetailsViewController: AnyObject
 {
 }
 
-class DetailsCharacterViewController: UIViewController
+class ComicsDetailsViewController: UIViewController, IComicsDetailsViewController
 {
-
-	private let presenter: IDetailCharacterPresenter
-
+	private var presenter: IComicsDetailPresenter
 	private let backgroundColor = UIColor(named: "headerColor")
 
 	private var textLabel: UILabel = {
@@ -29,7 +27,7 @@ class DetailsCharacterViewController: UIViewController
 		label.textColor = UIColor(named: "headerTitleColor")
 		return label
 	}()
-	
+
 	private var titleLabel: UILabel = {
 		let label = UILabel()
 		label.textAlignment = .left
@@ -46,7 +44,7 @@ class DetailsCharacterViewController: UIViewController
 		return backImageView
 	}()
 
-	init(presenter: IDetailCharacterPresenter) {
+	init(presenter: IComicsDetailPresenter) {
 		self.presenter = presenter
 		super.init(nibName: nil, bundle: nil)
 	}
@@ -110,15 +108,11 @@ class DetailsCharacterViewController: UIViewController
 		textLabel.leftAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leftAnchor, constant: 15).isActive = true
 		textLabel.rightAnchor.constraint(equalTo: view.safeAreaLayoutGuide.rightAnchor, constant: -15).isActive = true
 	}
-
 	//MARK: - Load data method
 	func loadData() {
-		textLabel.text = presenter.loadCharacterData().0.description
-		titleLabel.text = presenter.loadCharacterData().0.name
-		image.image = presenter.loadCharacterData().1
+		textLabel.text = presenter.loadComicsData().0.description
+		titleLabel.text = presenter.loadComicsData().0.title
+		image.image = presenter.loadComicsData().1
 	}
-}
 
-extension DetailsCharacterViewController: IDetailsCharacterViewController
-{
 }

@@ -7,15 +7,17 @@
 //
 
 import Foundation
+import UIKit
 
 protocol IComicsSearchRouter
 {
+	func showDetail(of comics: Comic, with image: UIImage?)
 }
 
 class ComicsSearchRouter
 {
 
-	weak var viewController: IComicsSearchViewController? //weak
+	weak var viewController: ComicsSearchViewController? //weak
 
 	private var factory: ModulesFactory //strong
 	init(factory: ModulesFactory) {
@@ -25,4 +27,9 @@ class ComicsSearchRouter
 
 extension ComicsSearchRouter: IComicsSearchRouter
 {
+	func showDetail(of comics: Comic, with image: UIImage?) {
+		let detailsViewController = factory.getComicsDetailsModule(comics: comics, image: image)
+		viewController?.navigationController?.pushViewController(detailsViewController,
+																 animated: true)
+	}
 }

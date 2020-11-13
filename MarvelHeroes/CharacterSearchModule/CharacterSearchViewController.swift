@@ -8,7 +8,7 @@
 
 import UIKit
 
-protocol ICharacterView: AnyObject
+protocol ICharacterViewController: AnyObject
 {
 	func show(heroes: [ComicCharacter])
 	func show(image: UIImage, for url: URL)
@@ -132,7 +132,7 @@ class CharacterTableViewController: UIViewController, UITableViewDelegate, UITab
 	}
 }
 
-extension CharacterTableViewController: ICharacterView
+extension CharacterTableViewController: ICharacterViewController
 {
 	func showStub() {
 		dummy.isHidden = false

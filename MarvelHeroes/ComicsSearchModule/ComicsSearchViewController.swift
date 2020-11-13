@@ -98,6 +98,7 @@ class ComicsSearchViewController: UIViewController, UITableViewDelegate, UITable
 																	"comicsSectionHeader") as? CustomSectionTitle
 		headerView?.searchBar.searchTextField.delegate = self
 		headerView?.title.text = "Comics"
+		headerView?.searchBar.placeholder = "Type the title"
 		return headerView
 	}
 	//MARK: - TableView DataSource methods
@@ -132,10 +133,10 @@ class ComicsSearchViewController: UIViewController, UITableViewDelegate, UITable
 		return cell
 	}
 
-//	func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-//		let image = tableView.cellForRow(at: indexPath)?.imageView?.image
-//		presenter.showDetail(of: comicsArray[indexPath.row], with: image)
-//	}
+	func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+		let image = tableView.cellForRow(at: indexPath)?.imageView?.image
+		presenter.showDetail(of: comicsArray[indexPath.row], with: image)
+	}
 }
 
 extension ComicsSearchViewController: IComicsSearchViewController

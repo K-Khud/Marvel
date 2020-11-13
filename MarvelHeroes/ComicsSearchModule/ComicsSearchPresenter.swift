@@ -7,9 +7,11 @@
 //
 
 import Foundation
+import UIKit
+
 protocol IComicsSearchPresenter
 {
-//	func showDetail(of comic: ComicCharacter, with image: UIImage?)
+	func showDetail(of comics: Comic, with image: UIImage?)
 
 	func loadComics(with nameParameter: String?)
 
@@ -74,8 +76,8 @@ extension ComicsSearchPresenter: IComicsSearchPresenter
 		}
 	}
 
-//	func showDetail(of character: ComicCharacter, with image: UIImage?) {
-//		router.showDetail(of: character, with: image)
-//	}
+	func showDetail(of comics: Comic, with image: UIImage?) {
+		router.showDetail(of: comics, with: image)
+	}
 
 }

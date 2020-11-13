@@ -20,7 +20,7 @@ class CharactersSearchPresenter
 {
 	private var repository: ICharacterRepository //strong
 	private var router: ICharacterSearchRouter //strong
-	weak var view: ICharacterView? //weak
+	weak var view: ICharacterViewController? //weak
 	private var loader = ImageLoader()
 
 	private var imagesUrls = [URL]()
