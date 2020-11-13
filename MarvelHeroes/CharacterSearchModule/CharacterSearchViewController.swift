@@ -21,7 +21,6 @@ class CharacterTableViewController: UIViewController, UITableViewDelegate, UITab
 	
 	private var charactersArray = [ComicCharacter]()
 	private var imagesDict = [URL : UIImage]()
-	private let imagePlaceholder = UIImage(named: "UIImage_1")
 	private let tableView = UITableView()
 
 	private var queryText: String = "" {
@@ -107,7 +106,6 @@ class CharacterTableViewController: UIViewController, UITableViewDelegate, UITab
 	func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
 		let cell = UITableViewCell(style: .subtitle, reuseIdentifier: "cell")
 
-		cell.imageView?.image = imagePlaceholder
 		cell.accessoryType = .disclosureIndicator
 		cell.imageView?.layer.masksToBounds = true
 		cell.imageView?.layer.cornerRadius = 40
@@ -129,8 +127,8 @@ class CharacterTableViewController: UIViewController, UITableViewDelegate, UITab
 	}
 
 	func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-		let image = tableView.cellForRow(at: indexPath)?.imageView?.image ?? imagePlaceholder
-		presenter.showDetail(of: charactersArray[indexPath.row], with: image!)
+		let image = tableView.cellForRow(at: indexPath)?.imageView?.image
+		presenter.showDetail(of: charactersArray[indexPath.row], with: image)
 	}
 }
 

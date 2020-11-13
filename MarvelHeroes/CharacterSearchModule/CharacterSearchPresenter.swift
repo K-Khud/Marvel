@@ -11,7 +11,7 @@ import UIKit
 
 protocol ICharacterSearchPresenter
 {
-	func showDetail(of character: ComicCharacter, with image: UIImage)
+	func showDetail(of character: ComicCharacter, with image: UIImage?)
 
 	func loadCharacters(with nameParameter: String?)
 }
@@ -78,7 +78,7 @@ extension CharactersSearchPresenter: ICharacterSearchPresenter
 		}
 	}
 
-	func showDetail(of character: ComicCharacter, with image: UIImage) {
+	func showDetail(of character: ComicCharacter, with image: UIImage?) {
 		router.showDetail(of: character, with: image)
 	}
 }

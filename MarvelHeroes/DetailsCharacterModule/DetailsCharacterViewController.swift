@@ -62,7 +62,7 @@ class DetailsCharacterViewController: UIViewController {
 		setGradient()
 		setupTitleLabel()
 		setupLabel()
-		self.navigationController?.navigationBar.isTranslucent = true
+		self.navigationController?.navigationBar.isTranslucent = false
 		self.navigationController?.view.backgroundColor = .clear
 	}
 

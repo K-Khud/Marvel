@@ -11,7 +11,7 @@ import UIKit
 
 protocol ICharacterSearchRouter
 {
-	func showDetail(of character: ComicCharacter, with image: UIImage)
+	func showDetail(of character: ComicCharacter, with image: UIImage?)
 }
 
 class CharacterRouter
@@ -28,7 +28,7 @@ class CharacterRouter
 
 extension CharacterRouter: ICharacterSearchRouter
 {
-	func showDetail(of character: ComicCharacter, with image: UIImage) {
+	func showDetail(of character: ComicCharacter, with image: UIImage?) {
 		let detailViewController = factory.getDetailsCharacterModule(character: character, image: image)
 		viewController?.navigationController?.pushViewController(detailViewController,
 																 animated: true)

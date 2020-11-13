@@ -23,7 +23,7 @@ class ModulesFactory {
 		return viewController
 	}
 
-	func getDetailsCharacterModule(character: ComicCharacter, image: UIImage) -> DetailsCharacterViewController {
+	func getDetailsCharacterModule(character: ComicCharacter, image: UIImage?) -> DetailsCharacterViewController {
 		let router = DetailsCharacterRouter(factory: self)
 		let repository = DetailsCharacterRepository(character: character, image: image)
 

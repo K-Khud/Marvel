@@ -12,7 +12,7 @@ import UIKit
 protocol IDetailContactPresenter
 {
 
-	func loadCharacterData() -> (ComicCharacter, UIImage)
+	func loadCharacterData() -> (ComicCharacter, UIImage?)
 }
 
 class DetailCharacterPresenter: IDetailContactPresenter
@@ -26,7 +26,7 @@ class DetailCharacterPresenter: IDetailContactPresenter
 		self.repository = repository
 	}
 
-	func loadCharacterData() -> (ComicCharacter, UIImage) {
+	func loadCharacterData() -> (ComicCharacter, UIImage?) {
 		return repository.getCharacterDetails()
 	}
 }
