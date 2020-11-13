@@ -14,4 +14,5 @@ public struct ComicCharacter: Decodable {
 	public let name: String?
 	public let description: String?
 	public let thumbnail: Image?
+
 }

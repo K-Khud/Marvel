@@ -15,3 +15,7 @@ public protocol APIRequest: Encodable {
 	// Last part of the URL
 	var resourceName: String { get }
 }
+
+enum SearchError: Error {
+	case noMatches
+}

@@ -19,7 +19,7 @@ class CustomSectionTitle: UITableViewHeaderFooterView
 		return bar
 	}()
 
-	private var title: UILabel = {
+	var title: UILabel = {
 		let label = UILabel()
 		label.textAlignment = .left
 		label.font = .boldSystemFont(ofSize: 32)

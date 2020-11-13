@@ -9,11 +9,31 @@
 import Foundation
 protocol IComicsSearchRepository
 {
+	func getComics(with nameParameter: String?, completion: @escaping (Result<Comic, SearchError>) -> Void)
 }
 
 class ComicsSearchRepository: IComicsSearchRepository
 {
-	init() {
-	}
+	private let apiClient = MarvelAPIClient(publicKey: MarvelKeys.publicKey.rawValue,
+									privateKey: MarvelKeys.privateKey.rawValue) //strong
 
+
+	public func getComics(with nameParameter: String?, completion: @escaping (Result<Comic, SearchError>) -> Void) {
+
+		apiClient.send(GetComics(title: nil,
+								 titleStartsWith: nameParameter,
+								 format: nil,
+								 limit: nil,
+								 offset: nil)) { response in
+
+			_ = response.map { dataContainer in
+				if dataContainer.results.isEmpty {
+					completion(.failure(.noMatches))
+				}
+				for comics in dataContainer.results {
+						completion(.success(comics))
+				}
+			}
+		}
+	}
 }

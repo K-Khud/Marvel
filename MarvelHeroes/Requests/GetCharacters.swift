@@ -1,6 +1,6 @@
 import Foundation
 
-public struct CharactersFromResponse: APIRequest {
+public struct GetCharacters: APIRequest {
 	public typealias Response = [ComicCharacter]
 
 	public var resourceName: String {

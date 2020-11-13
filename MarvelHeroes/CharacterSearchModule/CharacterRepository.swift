@@ -12,9 +12,6 @@ protocol ICharacterRepository
 {
 	func getCharacters(with nameParameter: String?, completion: @escaping (Result<ComicCharacter, SearchError>) -> Void)
 }
-enum SearchError: Error {
-	case noMatches
-}
 
 class CharacterRepository: ICharacterRepository
 {
@@ -24,7 +21,7 @@ class CharacterRepository: ICharacterRepository
 
 	public func getCharacters(with nameParameter: String?, completion: @escaping (Result<ComicCharacter, SearchError>) -> Void) {
 
-		apiClient.send(CharactersFromResponse(name: nil, nameStartsWith: nameParameter, limit: nil, offset: nil)) { response in
+		apiClient.send(GetCharacters(name: nil, nameStartsWith: nameParameter, limit: nil, offset: nil)) { response in
 
 			_ = response.map { dataContainer in
 				if dataContainer.results.isEmpty {

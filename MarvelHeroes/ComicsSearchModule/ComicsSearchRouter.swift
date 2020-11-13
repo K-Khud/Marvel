@@ -17,8 +17,7 @@ class ComicsSearchRouter
 
 	weak var viewController: IComicsSearchViewController? //weak
 
-	private var factory: ModulesFactory //strong!!!! WARNING
-
+	private var factory: ModulesFactory //strong
 	init(factory: ModulesFactory) {
 		self.factory = factory
 	}
