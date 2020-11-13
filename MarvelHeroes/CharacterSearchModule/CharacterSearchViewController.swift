@@ -112,7 +112,7 @@ class CharacterTableViewController: UIViewController, UITableViewDelegate, UITab
 
 		if let name = charactersArray[indexPath.row].name, let details = charactersArray[indexPath.row].description, let url = charactersArray[indexPath.row].thumbnail?.url {
 			cell.textLabel?.text = name
-			cell.detailTextLabel?.text = details != "" ? details : "No info"
+			cell.detailTextLabel?.text = details != "" ? details : ""
 			cell.detailTextLabel?.textColor = .systemGray
 			cell.detailTextLabel?.font = .systemFont(ofSize: 14)
 
