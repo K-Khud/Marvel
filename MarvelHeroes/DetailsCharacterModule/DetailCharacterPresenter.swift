@@ -7,14 +7,12 @@
 //
 
 import Foundation
+import UIKit
 
 protocol IDetailContactPresenter
 {
-//	func showDetail(of index: Int)
 
-	//TODO: present DetailsViewController
-
-	func loadCharacterData() -> ComicCharacter
+	func loadCharacterData() -> (ComicCharacter, UIImage)
 }
 
 class DetailCharacterPresenter: IDetailContactPresenter
@@ -28,7 +26,7 @@ class DetailCharacterPresenter: IDetailContactPresenter
 		self.repository = repository
 	}
 
-	func loadCharacterData() -> ComicCharacter {
+	func loadCharacterData() -> (ComicCharacter, UIImage) {
 		return repository.getCharacterDetails()
 	}
 }

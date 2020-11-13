@@ -10,7 +10,6 @@ import Foundation
 
 protocol IDetailsCharacterRouter
 {
-//	func showDetail(with character: ComicCharacter)
 }
 
 class DetailsCharacterRouter
@@ -27,10 +26,4 @@ class DetailsCharacterRouter
 
 extension DetailsCharacterRouter: IDetailsCharacterRouter
 {
-	func showDetail(with character: ComicCharacter) {
-		let detailViewController = factory.getDetailsCharacterModule(character: character) 
-			viewController?.navigationController?.pushViewController(detailViewController,
-																	 animated: true)
-
-	}
 }

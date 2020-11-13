@@ -7,10 +7,11 @@
 //
 
 import Foundation
+import UIKit
 
 protocol ICharacterSearchRouter
 {
-	func showDetail(with character: ComicCharacter)
+	func showDetail(of character: ComicCharacter, with image: UIImage)
 }
 
 class CharacterRouter
@@ -27,9 +28,8 @@ class CharacterRouter
 
 extension CharacterRouter: ICharacterSearchRouter
 {
-	func showDetail(with character: ComicCharacter) {
-		let detailViewController = factory.getDetailsCharacterModule(character: character)
-		detailViewController.view.backgroundColor = .white
+	func showDetail(of character: ComicCharacter, with image: UIImage) {
+		let detailViewController = factory.getDetailsCharacterModule(character: character, image: image)
 		viewController?.navigationController?.pushViewController(detailViewController,
 																 animated: true)
 	}

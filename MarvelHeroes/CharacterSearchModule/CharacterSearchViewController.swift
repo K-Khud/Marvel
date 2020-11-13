@@ -22,6 +22,7 @@ class CharacterTableViewController: UIViewController, UITableViewDelegate, UITab
 	private var presenter: ICharacterSearchPresenter //strong
 	
 	private var charactersArray = [ComicCharacter]()
+	private var imagesArray = [UIImage]()
 	private let imagePlaceholder = UIImage(named: "UIImage_1")
 	private let tableView = UITableView()
 
@@ -113,7 +114,6 @@ class CharacterTableViewController: UIViewController, UITableViewDelegate, UITab
 		let cell = UITableViewCell(style: .subtitle, reuseIdentifier: "cell")
 
 		cell.accessoryType = .disclosureIndicator
-
 		cell.imageView?.image = imagePlaceholder
 		cell.imageView?.layer.masksToBounds = true
 		cell.imageView?.layer.cornerRadius = 40
@@ -143,7 +143,8 @@ class CharacterTableViewController: UIViewController, UITableViewDelegate, UITab
 	}
 
 	func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-		presenter.showDetail(of: charactersArray[indexPath.row])
+		let image = tableView.cellForRow(at: indexPath)?.imageView?.image ?? imagePlaceholder
+		presenter.showDetail(of: charactersArray[indexPath.row], with: image!)
 	}
 }
 

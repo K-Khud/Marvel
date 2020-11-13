@@ -7,21 +7,25 @@
 //
 
 import Foundation
+import UIKit
+
 protocol IDetailsCharacterRepository
 {
-	func getCharacterDetails() -> ComicCharacter
+	func getCharacterDetails() -> (ComicCharacter, UIImage)
 }
 
 class DetailsCharacterRepository: IDetailsCharacterRepository
 {
 
 	private var character: ComicCharacter
+	private var image: UIImage
 
-	init(character: ComicCharacter) {
+	init(character: ComicCharacter, image: UIImage) {
 		self.character = character
+		self.image = image
 	}
 
-	func getCharacterDetails() -> ComicCharacter {
-		return character
+	func getCharacterDetails() -> (ComicCharacter, UIImage) {
+		return (character, image)
 	}
 }
