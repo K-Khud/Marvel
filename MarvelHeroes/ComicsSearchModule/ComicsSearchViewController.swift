@@ -16,24 +16,15 @@ protocol IComicsSearchViewController: AnyObject
 	func showStub()
 }
 
-class ComicsSearchViewController: UIViewController, UITableViewDelegate, UITableViewDataSource
+class ComicsSearchViewController: SearchViewControllerTemplate, UITableViewDataSource
 {
 	private var presenter: IComicsSearchPresenter //strong
 
 	private var comicsArray = [Comic]()
-	private var imagesDict = [URL : UIImage]()
-	private let tableView = UITableView()
-
-	private var queryText: String = "" {
-		didSet {
-			dummy.label.text = "No matches for the query \"" + queryText + "\""
-		}
-	}
-	private var dummy = DummyView(frame: .zero, queryText: "")
 
 	init(presenter: IComicsSearchPresenter) {
 		self.presenter = presenter
-		super.init(nibName: nil, bundle: nil)
+		super.init()
 	}
 
 	required init?(coder aDecoder: NSCoder) {
@@ -45,62 +36,8 @@ class ComicsSearchViewController: UIViewController, UITableViewDelegate, UITable
 		presenter.loadComics(with: nil)
 
 		tableView.dataSource = self
-		tableView.delegate = self
-
-		setupTableView()
-		registerCells()
-		setTableViewHeights()
-		setUpDummyView()
 	}
 
-	private func setupTableView() {
-		view.addSubview(tableView)
-		tableView.translatesAutoresizingMaskIntoConstraints = false
-		tableView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor).isActive = true
-		tableView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor).isActive = true
-		tableView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor).isActive = true
-		tableView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor).isActive = true
-	}
-
-	private func setUpDummyView() {
-		let bottomConstant = tabBarController?.tabBar.frame.height
-		view.addSubview(dummy)
-		dummy.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 120).isActive = true
-		dummy.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: bottomConstant ?? 0).isActive = true
-		dummy.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor).isActive = true
-		dummy.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor).isActive = true
-		dummy.isHidden = true
-		dummy.translatesAutoresizingMaskIntoConstraints = false
-
-	}
-	//MARK: - TableView Layout methods
-
-	private func setTableViewHeights() {
-		tableView.estimatedSectionHeaderHeight = 120
-		tableView.rowHeight = UITableView.automaticDimension
-	}
-
-	private func registerCells() {
-		tableView.register(UITableViewCell.self, forCellReuseIdentifier: "comicsCell")
-		tableView.register(CustomSectionTitle.self, forHeaderFooterViewReuseIdentifier: "comicsSectionHeader")
-	}
-
-	func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {return 80}
-
-	//MARK: - TableView Delegate methods
-
-	func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-		return 120
-	}
-
-	func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-		let headerView = tableView.dequeueReusableHeaderFooterView(withIdentifier:
-																	"comicsSectionHeader") as? CustomSectionTitle
-		headerView?.searchBar.searchTextField.delegate = self
-		headerView?.title.text = "Comics"
-		headerView?.searchBar.placeholder = "Type the title"
-		return headerView
-	}
 	//MARK: - TableView DataSource methods
 
 	func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int { print(comicsArray.count); return comicsArray.count }
@@ -160,21 +97,8 @@ extension ComicsSearchViewController: IComicsSearchViewController
 }
 //MARK: - UITextFieldDelegate
 
-extension ComicsSearchViewController: UISearchTextFieldDelegate
+extension ComicsSearchViewController
 {
-	func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-		textField.endEditing(true)
-		return true
-	}
-
-	func textFieldShouldEndEditing(_ textField: UITextField) -> Bool {
-		if textField.text != "" {
-			return true
-		} else {
-			return false
-		}
-	}
-
 	func textFieldDidEndEditing(_ textField: UITextField) {
 		if let comics = textField.text {
 			queryText = comics
