@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-class DummyView: UIView
+class EmptyView: UIView
 {
 	private var image = UIImageView(image: UIImage(named: "search_stub"))
 	

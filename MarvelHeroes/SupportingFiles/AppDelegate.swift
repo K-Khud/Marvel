@@ -16,7 +16,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 	func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
 		let charactersViewController = ModulesFactory().getCharacterSearchModule()
 		let comicsViewController = ModulesFactory().getComicsSearchModule()
-		let authorsViewController = ModulesFactory().getAuthorsSearchModule()
+		let authorsViewController = ModulesFactory().getCreatorsSearchModule()
 
 		let tabBarViewController = UITabBarController()
 
@@ -27,7 +27,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 		charactersViewController.tabBarItem = UITabBarItem(title: "Heroes", image: shieldImage, tag: 0)
 		comicsViewController.tabBarItem = UITabBarItem(title: "Comics", image: comicsImage, tag: 1)
-		authorsViewController.tabBarItem = UITabBarItem(title: "Authors", image: authorsImage, tag: 2)
+		authorsViewController.tabBarItem = UITabBarItem(title: "Creators", image: authorsImage, tag: 2)
 
 		let controllers = [charactersViewController, comicsViewController, authorsViewController]
 			.map{UINavigationController(rootViewController: $0)}

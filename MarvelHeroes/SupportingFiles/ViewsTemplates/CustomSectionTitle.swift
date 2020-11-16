@@ -13,7 +13,7 @@ class CustomSectionTitle: UITableViewHeaderFooterView
 {
 	var searchBar: UISearchBar = {
 		let bar = UISearchBar()
-		bar.placeholder = "Search your hero"
+		bar.placeholder = "Search"
 		bar.backgroundColor = UIColor(named: "headerColor")
 		bar.searchBarStyle = .minimal
 		return bar

@@ -14,15 +14,18 @@ class SearchViewControllerTemplate: UIViewController, UITableViewDelegate
 	var imagesDict = [URL : UIImage]()
 	let tableView = UITableView()
 
+	var categoryName: String?
+
 	var queryText: String = "" {
 		didSet {
 			dummy.label.text = "No matches for the query \"" + queryText + "\""
 		}
 	}
-	var dummy = DummyView(frame: .zero, queryText: "")
+	var dummy = EmptyView(frame: .zero, queryText: "")
 
-	init() {
+	init(categoryName: String?) {
 		super.init(nibName: nil, bundle: nil)
+		self.categoryName = categoryName
 	}
 
 	required init?(coder aDecoder: NSCoder) {
@@ -84,6 +87,7 @@ class SearchViewControllerTemplate: UIViewController, UITableViewDelegate
 		let headerView = tableView.dequeueReusableHeaderFooterView(withIdentifier:
 																	"sectionHeader") as? CustomSectionTitle
 		headerView?.searchBar.searchTextField.delegate = self
+		headerView?.title.text = categoryName
 		return headerView
 	}
 }

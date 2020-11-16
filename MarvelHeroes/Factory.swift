@@ -62,13 +62,12 @@ class ModulesFactory {
 		return viewController
 	}
 
+	func getCreatorsSearchModule() -> CreatorsSearchViewController {
+		let repository = CreatorsSearchRepository()
+		let router = CreatorsSearchRouter(factory: self)
 
-	func getAuthorsSearchModule() -> AuthorsSearchViewController {
-		let repository = AuthorsSearchRepository()
-		let router = AuthorsSearchRouter(factory: self)
-
-		let presenter = AuthorsSearchPresenter(repository: repository, router: router)
-		let viewController = AuthorsSearchViewController(presenter: presenter)
+		let presenter = CreatorsSearchPresenter(repository: repository, router: router)
+		let viewController = CreatorsSearchViewController(presenter: presenter)
 
 		router.viewController = viewController
 		presenter.view = viewController
@@ -76,6 +75,16 @@ class ModulesFactory {
 		return viewController
 	}
 
+	func getCreatorDetailsModule(creator: Creator, image: UIImage?) -> CreatorDetailsViewController {
+		let router = CreatorDetailsRouter(factory: self)
+		let repository = CreatorDetailsRepository(author: creator, image: image)
 
+		let presenter = CreatorDetailPresenter(repository: repository, router: router)
+		let viewController = CreatorDetailsViewController(presenter: presenter)
 
+		presenter.view = viewController
+		router.viewController = viewController
+
+		return viewController
+	}
 }

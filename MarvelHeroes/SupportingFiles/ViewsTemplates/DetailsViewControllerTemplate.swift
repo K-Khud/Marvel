@@ -9,9 +9,11 @@
 import Foundation
 import UIKit
 
-class DetailsViewControllerTemplate: UIViewController
+class DetailsViewControllerTemplate: UIViewController, UITableViewDelegate
 {
 	private let backgroundColor = UIColor(named: "headerColor")
+
+	var tableView = UITableView()
 
 	var textLabel: UILabel = {
 		let label = UILabel()
@@ -53,9 +55,22 @@ class DetailsViewControllerTemplate: UIViewController
 		setGradient()
 		setupTitleLabel()
 		setupLabel()
+		setupTableView()
 	}
 
-	func setupImage() {
+	func setupTableView() {
+		view.addSubview(tableView)
+		tableView.translatesAutoresizingMaskIntoConstraints = false
+
+		tableView.topAnchor.constraint(equalTo: image.bottomAnchor).isActive = true
+		tableView.leftAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leftAnchor).isActive = true
+		tableView.rightAnchor.constraint(equalTo: view.safeAreaLayoutGuide.rightAnchor).isActive = true
+		tableView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor).isActive = true
+		view.layoutSubviews()
+	}
+
+
+	private func setupImage() {
 		view.addSubview(image)
 		image.translatesAutoresizingMaskIntoConstraints = false
 
@@ -68,7 +83,7 @@ class DetailsViewControllerTemplate: UIViewController
 		view.layoutSubviews()
 	}
 	
-	func setGradient() {
+	private func setGradient() {
 		let view = UIView(frame: image.frame)
 		let gradient = CAGradientLayer()
 		gradient.frame = view.frame
@@ -81,7 +96,7 @@ class DetailsViewControllerTemplate: UIViewController
 		view.layoutSubviews()
 	}
 
-	func setupTitleLabel() {
+	private func setupTitleLabel() {
 		view.addSubview(titleLabel)
 		titleLabel.translatesAutoresizingMaskIntoConstraints = false
 		titleLabel.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 30).isActive = true
@@ -89,12 +104,11 @@ class DetailsViewControllerTemplate: UIViewController
 		titleLabel.rightAnchor.constraint(equalTo: view.safeAreaLayoutGuide.rightAnchor, constant: -15).isActive = true
 	}
 
-	func setupLabel() {
+	private func setupLabel() {
 		view.addSubview(textLabel)
 		textLabel.translatesAutoresizingMaskIntoConstraints = false
 		textLabel.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 30).isActive = true
 		textLabel.leftAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leftAnchor, constant: 15).isActive = true
 		textLabel.rightAnchor.constraint(equalTo: view.safeAreaLayoutGuide.rightAnchor, constant: -15).isActive = true
 	}
-
 }

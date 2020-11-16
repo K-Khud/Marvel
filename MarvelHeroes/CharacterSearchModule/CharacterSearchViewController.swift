@@ -23,7 +23,7 @@ class CharacterTableViewController: SearchViewControllerTemplate, UITableViewDat
 
 	init(presenter: ICharacterSearchPresenter) {
 		self.presenter = presenter
-		super.init()
+		super.init(categoryName: "Heroes")
 	}
 
 	required init?(coder aDecoder: NSCoder) {
