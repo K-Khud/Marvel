@@ -32,11 +32,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 		let controllers = [charactersViewController, comicsViewController, authorsViewController]
 			.map{UINavigationController(rootViewController: $0)}
 
-		for controller in controllers {
-			controller.navigationBar.shadowImage = UIImage()
-			controller.navigationBar.barTintColor = UIColor(named: "headerColor")
-			controller.navigationBar.isTranslucent = false
-		}
+//		for controller in controllers {
+//			controller.navigationBar.shadowImage = UIImage()
+//			controller.navigationBar.barTintColor = UIColor(named: "headerColor")
+//			controller.navigationBar.isTranslucent = false
+//		}
 
 		tabBarViewController.viewControllers = controllers
 

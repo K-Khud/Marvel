@@ -75,7 +75,7 @@ class DetailsViewControllerTemplate: UIViewController, UITableViewDelegate
 		view.addSubview(image)
 		image.translatesAutoresizingMaskIntoConstraints = false
 
-		image.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor).isActive = true
+		image.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
 
 		image.leftAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leftAnchor).isActive = true
 		image.rightAnchor.constraint(equalTo: view.safeAreaLayoutGuide.rightAnchor).isActive = true

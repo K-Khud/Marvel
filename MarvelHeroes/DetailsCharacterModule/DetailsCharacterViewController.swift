@@ -33,11 +33,22 @@ class DetailsCharacterViewController: DetailsViewControllerTemplate, IDetailsCha
 		super.viewDidLoad()
 		tableView.dataSource = self
 
+		configureNavigationBar()
 		loadData()
 	}
 
+	private func configureNavigationBar() {
+		if let navigation = navigationController?.viewControllers[0] {
+			navigation.navigationItem.backButtonTitle = "Heroes"
+			navigation.view.backgroundColor = .clear
+		}
+		navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
+		navigationController?.navigationBar.shadowImage = UIImage()
+		navigationController?.navigationBar.isTranslucent = true
+	}
+
 	//MARK: - Load data method
-	func loadData() {
+	private func loadData() {
 		textLabel.text = presenter.loadCharacterData().0.description
 		titleLabel.text = presenter.loadCharacterData().0.name
 		image.image = presenter.loadCharacterData().1
@@ -56,8 +67,7 @@ class DetailsCharacterViewController: DetailsViewControllerTemplate, IDetailsCha
 		if !comicItemsArray.isEmpty {
 
 			let name = comicItemsArray[indexPath.row].name
-//			let url = comicItemsArray[indexPath.row].resourceURI
-			
+
 			cell.textLabel?.text = name
 		}
 		return cell

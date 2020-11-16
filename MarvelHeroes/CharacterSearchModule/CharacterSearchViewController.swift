@@ -37,6 +37,16 @@ class CharacterTableViewController: SearchViewControllerTemplate, UITableViewDat
 		tableView.dataSource = self
 	}
 
+	override func viewWillAppear(_ animated: Bool) {
+		configureNavigationBar()
+	}
+
+	private func configureNavigationBar() {
+		navigationController?.navigationBar.shadowImage = UIImage()
+		navigationController?.navigationBar.barTintColor = UIColor(named: "headerColor")
+		navigationController?.navigationBar.isTranslucent = false
+	}
+
 	//MARK: - TableView DataSource methods
 
 	func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int { return charactersArray.count }

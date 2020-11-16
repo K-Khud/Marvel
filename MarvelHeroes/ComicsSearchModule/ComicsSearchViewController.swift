@@ -36,7 +36,16 @@ class ComicsSearchViewController: SearchViewControllerTemplate, UITableViewDataS
 		presenter.loadComics(with: nil)
 
 		tableView.dataSource = self
+	}
 
+	override func viewWillAppear(_ animated: Bool) {
+		configureNavigationBar()
+	}
+
+	private func configureNavigationBar() {
+		navigationController?.navigationBar.shadowImage = UIImage()
+		navigationController?.navigationBar.barTintColor = UIColor(named: "headerColor")
+		navigationController?.navigationBar.isTranslucent = false
 	}
 
 	//MARK: - TableView DataSource methods

@@ -31,8 +31,18 @@ class ComicsDetailsViewController: DetailsViewControllerTemplate, IComicsDetails
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		tableView.dataSource = self
-
+		configureNavigationBar()
 		loadData()
+	}
+
+	private func configureNavigationBar() {
+		if let navigation = navigationController?.viewControllers[1] {
+			navigation.navigationItem.backButtonTitle = "Comics"
+			navigation.view.backgroundColor = .clear
+		}
+		navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
+		navigationController?.navigationBar.shadowImage = UIImage()
+		navigationController?.navigationBar.isTranslucent = true
 	}
 
 	//MARK: - Load data method
