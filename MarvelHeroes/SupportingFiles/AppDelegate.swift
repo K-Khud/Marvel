@@ -24,7 +24,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 		let comicsImage = UIImage(named: "comic-1")?.withRenderingMode(.alwaysOriginal)
 		let authorsImage = UIImage(named: "writer")?.withRenderingMode(.alwaysOriginal)
 
-
 		charactersViewController.tabBarItem = UITabBarItem(title: "Heroes", image: shieldImage, tag: 0)
 		comicsViewController.tabBarItem = UITabBarItem(title: "Comics", image: comicsImage, tag: 1)
 		authorsViewController.tabBarItem = UITabBarItem(title: "Creators", image: authorsImage, tag: 2)
@@ -32,13 +31,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 		let controllers = [charactersViewController, comicsViewController, authorsViewController]
 			.map{UINavigationController(rootViewController: $0)}
 
-//		for controller in controllers {
-//			controller.navigationBar.shadowImage = UIImage()
-//			controller.navigationBar.barTintColor = UIColor(named: "headerColor")
-//			controller.navigationBar.isTranslucent = false
-//		}
-
 		tabBarViewController.viewControllers = controllers
+		tabBarViewController.tabBar.tintColor = UIColor(named: "headerColor")
+		tabBarViewController.tabBar.isTranslucent = false
+		tabBarViewController.tabBar.tintColor = UIColor(named: "headerTitleColor")
 
 		window = UIWindow(frame: UIScreen.main.bounds)
 		window?.rootViewController = tabBarViewController

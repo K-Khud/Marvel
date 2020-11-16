@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		020AEA9D2561447B0039F681 /* GetAuthors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 020AEA9C2561447B0039F681 /* GetAuthors.swift */; };
-		021D213E255BE111007A42D8 /* UIImage_1.png in Resources */ = {isa = PBXBuildFile; fileRef = 021D213D255BE111007A42D8 /* UIImage_1.png */; };
 		021D2143255C09E8007A42D8 /* ComicsSearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 021D2142255C09E8007A42D8 /* ComicsSearchViewController.swift */; };
 		021D2146255C09F8007A42D8 /* CreatorsSearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 021D2145255C09F8007A42D8 /* CreatorsSearchViewController.swift */; };
 		021D214D255C0B09007A42D8 /* ComicsSearchPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 021D214C255C0B09007A42D8 /* ComicsSearchPresenter.swift */; };
@@ -63,7 +62,6 @@
 
 /* Begin PBXFileReference section */
 		020AEA9C2561447B0039F681 /* GetAuthors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetAuthors.swift; sourceTree = "<group>"; };
-		021D213D255BE111007A42D8 /* UIImage_1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = UIImage_1.png; sourceTree = "<group>"; };
 		021D2142255C09E8007A42D8 /* ComicsSearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComicsSearchViewController.swift; sourceTree = "<group>"; };
 		021D2145255C09F8007A42D8 /* CreatorsSearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreatorsSearchViewController.swift; sourceTree = "<group>"; };
 		021D214C255C0B09007A42D8 /* ComicsSearchPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComicsSearchPresenter.swift; sourceTree = "<group>"; };
@@ -237,7 +235,6 @@
 				02C70113255EF51300C1812A /* ViewsTemplates */,
 				C6A9F60A23968F4A007A42E2 /* AppDelegate.swift */,
 				C6A9F61123968F4E007A42E2 /* Assets.xcassets */,
-				021D213D255BE111007A42D8 /* UIImage_1.png */,
 				C6A9F61323968F4E007A42E2 /* LaunchScreen.storyboard */,
 				C6A9F61623968F4E007A42E2 /* Info.plist */,
 				0275B7B12562BFC600BD1ACE /* MarvelRegular.ttf */,
@@ -351,7 +348,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				021D213E255BE111007A42D8 /* UIImage_1.png in Resources */,
 				C6A9F61523968F4E007A42E2 /* LaunchScreen.storyboard in Resources */,
 				0275B7B32562C00200BD1ACE /* MarvelRegular.ttf in Resources */,
 				C6A9F61223968F4E007A42E2 /* Assets.xcassets in Resources */,
