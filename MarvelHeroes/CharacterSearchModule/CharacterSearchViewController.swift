@@ -35,7 +35,6 @@ class CharacterTableViewController: SearchViewControllerTemplate, UITableViewDat
 		super.viewDidLoad()
 
 		tableView.dataSource = self
-//		tableView.delegate = self
 	}
 
 	//MARK: - TableView DataSource methods

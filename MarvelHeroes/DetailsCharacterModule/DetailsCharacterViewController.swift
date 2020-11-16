@@ -13,10 +13,12 @@ protocol IDetailsCharacterViewController: AnyObject
 {
 }
 
-class DetailsCharacterViewController: DetailsViewControllerTemplate, IDetailsCharacterViewController
+class DetailsCharacterViewController: DetailsViewControllerTemplate, IDetailsCharacterViewController, UITableViewDataSource
 {
 
 	private let presenter: IDetailCharacterPresenter
+
+	private var comicItemsArray = [ComicsItem]()
 
 	init(presenter: IDetailCharacterPresenter) {
 		self.presenter = presenter
@@ -29,6 +31,8 @@ class DetailsCharacterViewController: DetailsViewControllerTemplate, IDetailsCha
 
 	override func viewDidLoad() {
 		super.viewDidLoad()
+		tableView.dataSource = self
+
 		loadData()
 	}
 
@@ -37,5 +41,30 @@ class DetailsCharacterViewController: DetailsViewControllerTemplate, IDetailsCha
 		textLabel.text = presenter.loadCharacterData().0.description
 		titleLabel.text = presenter.loadCharacterData().0.name
 		image.image = presenter.loadCharacterData().1
+		if let array = presenter.loadCharacterData().0.comics?.items {
+		comicItemsArray = array
+		}
+		tableView.reloadData()
+
 	}
+
+	func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+		return comicItemsArray.count
+	}
+
+	func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+		let cell = UITableViewCell(style: .subtitle, reuseIdentifier: "comicsItemCell")
+		if !comicItemsArray.isEmpty {
+
+			let name = comicItemsArray[indexPath.row].name
+			let url = comicItemsArray[indexPath.row].resourceURI
+			print(url)
+
+			cell.textLabel?.text = name
+		}
+		return cell
+	}
+
+
+
 }
