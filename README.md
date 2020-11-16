@@ -12,5 +12,6 @@ MarvelHeroes is an iOS app for the Marvel Comics API, which is built following t
 
 Main List | Search results | Details Screen
 ------------ | ------------- | -------------
- | Content from cell 2 | Content from cell 2
-Content in the first column | Content in the second column | Content from cell 2
+![GitHub Logo](https://github.com/K-Khud/Marvel/blob/master/1.png) | ![GitHub Logo](https://github.com/K-Khud/Marvel/blob/master/2.png) | ![GitHub Logo](https://github.com/K-Khud/Marvel/blob/master/3.png)
+![GitHub Logo](https://github.com/K-Khud/Marvel/blob/master/4.png) | ![GitHub Logo](https://github.com/K-Khud/Marvel/blob/master/5.png) | ![GitHub Logo](https://github.com/K-Khud/Marvel/blob/master/6.png)
+![GitHub Logo](https://github.com/K-Khud/Marvel/blob/master/7.png) | ![GitHub Logo](https://github.com/K-Khud/Marvel/blob/master/8.png) | ![GitHub Logo](https://github.com/K-Khud/Marvel/blob/master/9.png)
