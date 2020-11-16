@@ -17,12 +17,13 @@
 		021D2156255C0BE7007A42D8 /* ComicsSearchRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 021D2155255C0BE7007A42D8 /* ComicsSearchRepository.swift */; };
 		023EC485255855CE00522495 /* ImageLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 023EC484255855CE00522495 /* ImageLoader.swift */; };
 		02515B532551BE09001B4357 /* DetailsCharacterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02515B522551BE09001B4357 /* DetailsCharacterViewController.swift */; };
+		0275B7AF2562BE5600BD1ACE /* SearchTitleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0275B7AE2562BE5600BD1ACE /* SearchTitleView.swift */; };
+		0275B7B32562C00200BD1ACE /* MarvelRegular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0275B7B12562BFC600BD1ACE /* MarvelRegular.ttf */; };
 		0283BD62255C2A6F00074572 /* CreatorsSearchRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0283BD61255C2A6F00074572 /* CreatorsSearchRouter.swift */; };
 		0283BD65255C2A8200074572 /* CreatorsSearchRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0283BD64255C2A8200074572 /* CreatorsSearchRepository.swift */; };
 		0283BD6A255C5A3A00074572 /* EmptyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0283BD69255C5A3A00074572 /* EmptyView.swift */; };
 		028697362553065C0003B362 /* DetailsCharacterRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 028697352553065C0003B362 /* DetailsCharacterRouter.swift */; };
 		028697392553067C0003B362 /* DerailsCharacterRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 028697382553067B0003B362 /* DerailsCharacterRepository.swift */; };
-		0286973F255414960003B362 /* CustomSectionTitle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0286973E255414960003B362 /* CustomSectionTitle.swift */; };
 		0298C97525628D490046C081 /* CreatorDetailsRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0298C97425628D490046C081 /* CreatorDetailsRepository.swift */; };
 		0298C97A25628D7A0046C081 /* CreatorDetailsPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0298C97925628D7A0046C081 /* CreatorDetailsPresenter.swift */; };
 		0298C97D25628D8D0046C081 /* CreatorDetailsRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0298C97C25628D8D0046C081 /* CreatorDetailsRouter.swift */; };
@@ -71,12 +72,13 @@
 		021D2155255C0BE7007A42D8 /* ComicsSearchRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComicsSearchRepository.swift; sourceTree = "<group>"; };
 		023EC484255855CE00522495 /* ImageLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageLoader.swift; sourceTree = "<group>"; };
 		02515B522551BE09001B4357 /* DetailsCharacterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsCharacterViewController.swift; sourceTree = "<group>"; };
+		0275B7AE2562BE5600BD1ACE /* SearchTitleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchTitleView.swift; sourceTree = "<group>"; };
+		0275B7B12562BFC600BD1ACE /* MarvelRegular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = MarvelRegular.ttf; sourceTree = "<group>"; };
 		0283BD61255C2A6F00074572 /* CreatorsSearchRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreatorsSearchRouter.swift; sourceTree = "<group>"; };
 		0283BD64255C2A8200074572 /* CreatorsSearchRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreatorsSearchRepository.swift; sourceTree = "<group>"; };
 		0283BD69255C5A3A00074572 /* EmptyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyView.swift; sourceTree = "<group>"; };
 		028697352553065C0003B362 /* DetailsCharacterRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsCharacterRouter.swift; sourceTree = "<group>"; };
 		028697382553067B0003B362 /* DerailsCharacterRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DerailsCharacterRepository.swift; sourceTree = "<group>"; };
-		0286973E255414960003B362 /* CustomSectionTitle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomSectionTitle.swift; sourceTree = "<group>"; };
 		0298C97425628D490046C081 /* CreatorDetailsRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreatorDetailsRepository.swift; sourceTree = "<group>"; };
 		0298C97925628D7A0046C081 /* CreatorDetailsPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreatorDetailsPresenter.swift; sourceTree = "<group>"; };
 		0298C97C25628D8D0046C081 /* CreatorDetailsRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreatorDetailsRouter.swift; sourceTree = "<group>"; };
@@ -187,7 +189,7 @@
 			children = (
 				02BA45CC255EEFD6007BCE7F /* SearchViewControllerTemplate.swift */,
 				02E3C9DE255EF5A700746A3E /* DetailsViewControllerTemplate.swift */,
-				0286973E255414960003B362 /* CustomSectionTitle.swift */,
+				0275B7AE2562BE5600BD1ACE /* SearchTitleView.swift */,
 				0283BD69255C5A3A00074572 /* EmptyView.swift */,
 			);
 			path = ViewsTemplates;
@@ -238,6 +240,7 @@
 				021D213D255BE111007A42D8 /* UIImage_1.png */,
 				C6A9F61323968F4E007A42E2 /* LaunchScreen.storyboard */,
 				C6A9F61623968F4E007A42E2 /* Info.plist */,
+				0275B7B12562BFC600BD1ACE /* MarvelRegular.ttf */,
 			);
 			path = SupportingFiles;
 			sourceTree = "<group>";
@@ -350,6 +353,7 @@
 			files = (
 				021D213E255BE111007A42D8 /* UIImage_1.png in Resources */,
 				C6A9F61523968F4E007A42E2 /* LaunchScreen.storyboard in Resources */,
+				0275B7B32562C00200BD1ACE /* MarvelRegular.ttf in Resources */,
 				C6A9F61223968F4E007A42E2 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -381,6 +385,7 @@
 				0298C97A25628D7A0046C081 /* CreatorDetailsPresenter.swift in Sources */,
 				021D2153255C0B79007A42D8 /* ComicsSearchRouter.swift in Sources */,
 				02BA45CD255EEFD6007BCE7F /* SearchViewControllerTemplate.swift in Sources */,
+				0275B7AF2562BE5600BD1ACE /* SearchTitleView.swift in Sources */,
 				C6B85DD42396DD4600D4D5E7 /* CharacterSearchRouter.swift in Sources */,
 				021D2150255C0B16007A42D8 /* CreatorsSearchPresenter.swift in Sources */,
 				C6B85DDF2398078A00D4D5E7 /* MarvelError.swift in Sources */,
@@ -397,7 +402,6 @@
 				028697362553065C0003B362 /* DetailsCharacterRouter.swift in Sources */,
 				0283BD62255C2A6F00074572 /* CreatorsSearchRouter.swift in Sources */,
 				02A1750324F03C8C0086DF84 /* DetailCharacterPresenter.swift in Sources */,
-				0286973F255414960003B362 /* CustomSectionTitle.swift in Sources */,
 				028697392553067C0003B362 /* DerailsCharacterRepository.swift in Sources */,
 				0298C98025628D9E0046C081 /* CreatorDetailsViewController.swift in Sources */,
 				0283BD6A255C5A3A00074572 /* EmptyView.swift in Sources */,

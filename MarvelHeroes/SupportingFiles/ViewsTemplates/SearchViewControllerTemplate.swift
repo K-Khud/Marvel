@@ -13,6 +13,7 @@ class SearchViewControllerTemplate: UIViewController, UITableViewDelegate
 {
 	var imagesDict = [URL : UIImage]()
 	let tableView = UITableView()
+	var titleView = SearchTitleView(frame: .zero)
 
 	var reuseIdentifier: String?
 	var categoryName: String?
@@ -38,16 +39,27 @@ class SearchViewControllerTemplate: UIViewController, UITableViewDelegate
 
 		tableView.delegate = self
 
+		setupTitleView()
 		setupTableView()
 		registerCells()
 		setTableViewHeights()
 		setUpDummyView()
 	}
 
+	private func setupTitleView() {
+		view.addSubview(titleView)
+		titleView.title.text = categoryName?.uppercased()
+		titleView.translatesAutoresizingMaskIntoConstraints = false
+		titleView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor).isActive = true
+		titleView.heightAnchor.constraint(equalToConstant: 140).isActive = true
+		titleView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor).isActive = true
+		titleView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor).isActive = true
+	}
+
 	private func setupTableView() {
 		view.addSubview(tableView)
 		tableView.translatesAutoresizingMaskIntoConstraints = false
-		tableView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor).isActive = true
+		tableView.topAnchor.constraint(equalTo: titleView.bottomAnchor).isActive = true
 		tableView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor).isActive = true
 		tableView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor).isActive = true
 		tableView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor).isActive = true
@@ -67,30 +79,14 @@ class SearchViewControllerTemplate: UIViewController, UITableViewDelegate
 	//MARK: - TableView Layout methods
 
 	private func setTableViewHeights() {
-		tableView.estimatedSectionHeaderHeight = 120
 		tableView.rowHeight = UITableView.automaticDimension
 	}
 
 	private func registerCells() {
 		tableView.register(UITableViewCell.self, forCellReuseIdentifier: reuseIdentifier ?? "cell")
-		tableView.register(CustomSectionTitle.self, forHeaderFooterViewReuseIdentifier: "sectionHeader")
 	}
 
 	func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {return 80}
-
-	//MARK: - TableView Delegate methods
-
-	func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-		return 120
-	}
-
-	func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-		let headerView = tableView.dequeueReusableHeaderFooterView(withIdentifier:
-																	"sectionHeader") as? CustomSectionTitle
-		headerView?.searchBar.searchTextField.delegate = self
-		headerView?.title.text = categoryName
-		return headerView
-	}
 }
 
 //MARK: - UITextFieldDelegate
