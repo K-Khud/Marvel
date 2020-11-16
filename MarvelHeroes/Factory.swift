@@ -77,9 +77,9 @@ class ModulesFactory {
 
 	func getCreatorDetailsModule(creator: Creator, image: UIImage?) -> CreatorDetailsViewController {
 		let router = CreatorDetailsRouter(factory: self)
-		let repository = CreatorDetailsRepository(author: creator, image: image)
+		let repository = CreatorDetailsRepository(creator: creator, image: image)
 
-		let presenter = CreatorDetailPresenter(repository: repository, router: router)
+		let presenter = CreatorDetailsPresenter(repository: repository, router: router)
 		let viewController = CreatorDetailsViewController(presenter: presenter)
 
 		presenter.view = viewController

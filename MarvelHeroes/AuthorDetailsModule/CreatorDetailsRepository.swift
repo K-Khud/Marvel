@@ -9,23 +9,23 @@
 import Foundation
 import UIKit
 
-protocol IAuthorDetailsRepository
+protocol ICreatorDetailsRepository
 {
-	func getAuthorDetails() -> (Creator, UIImage?)
+	func getCreatorDetails() -> (Creator, UIImage?)
 }
 
-class CreatorDetailsRepository: IAuthorDetailsRepository
+class CreatorDetailsRepository: ICreatorDetailsRepository
 {
 
-	private var author: Creator
+	private var creator: Creator
 	private var image: UIImage?
 
-	init(author: Creator, image: UIImage?) {
-		self.author = author
+	init(creator: Creator, image: UIImage?) {
+		self.creator = creator
 		self.image = image
 	}
 
-	func getAuthorDetails() -> (Creator, UIImage?) {
-		return (author, image)
+	func getCreatorDetails() -> (Creator, UIImage?) {
+		return (creator, image)
 	}
 }

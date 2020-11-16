@@ -56,11 +56,14 @@ class DetailsCharacterViewController: DetailsViewControllerTemplate, IDetailsCha
 		if !comicItemsArray.isEmpty {
 
 			let name = comicItemsArray[indexPath.row].name
-			let url = comicItemsArray[indexPath.row].resourceURI
-			print(url)
-
+//			let url = comicItemsArray[indexPath.row].resourceURI
+			
 			cell.textLabel?.text = name
 		}
 		return cell
+	}
+
+	func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+		return !comicItemsArray.isEmpty ? "Comics which feature this character" : ""
 	}
 }

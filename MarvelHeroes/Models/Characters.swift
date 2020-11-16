@@ -11,12 +11,12 @@ import Foundation
 public struct Characters: Codable {
 	public let available: Int
 	public let collectionURI: String
-	public let items: [Series]
+	public let items: [CharacterList]
 	public let returned: Int
 }
 
 // MARK: - Series
-public struct Series: Codable {
+public struct CharacterList: Codable {
 	public let resourceURI: String
 	public let name: String
 }

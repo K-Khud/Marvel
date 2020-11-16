@@ -17,8 +17,7 @@ class ComicsDetailsViewController: DetailsViewControllerTemplate, IComicsDetails
 {
 	private var presenter: IComicsDetailPresenter
 
-	private var seriesArray = [Series]()
-
+	private var seriesArray = [CharacterList]()
 
 	init(presenter: IComicsDetailPresenter) {
 		self.presenter = presenter
@@ -51,15 +50,19 @@ class ComicsDetailsViewController: DetailsViewControllerTemplate, IComicsDetails
 	}
 
 	func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-		let cell = UITableViewCell(style: .subtitle, reuseIdentifier: "seriesItemCell")
+		let cell = UITableViewCell(style: .subtitle, reuseIdentifier: "charactersItemCell")
 		if !seriesArray.isEmpty {
 
 			let name = seriesArray[indexPath.row].name
-			let url = seriesArray[indexPath.row].resourceURI
-			print(url)
+//			let url = seriesArray[indexPath.row].resourceURI
 
 			cell.textLabel?.text = name
 		}
 		return cell
 	}
+
+	func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+		return !seriesArray.isEmpty ? "Characters which appear in this comic" : ""
+	}
+
 }

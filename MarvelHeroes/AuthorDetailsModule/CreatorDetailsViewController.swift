@@ -9,15 +9,17 @@
 import Foundation
 import UIKit
 
-protocol IAuthorDetailsViewController: AnyObject
+protocol ICreatorDetailsViewController: AnyObject
 {
 }
 
-class CreatorDetailsViewController: DetailsViewControllerTemplate, IAuthorDetailsViewController
+class CreatorDetailsViewController: DetailsViewControllerTemplate, ICreatorDetailsViewController, UITableViewDataSource
 {
-	private var presenter: IAuthorDetailPresenter
+	private var presenter: ICreatorDetailsPresenter
+	private var comicsArray = [ComicsItem]()
 
-	init(presenter: IAuthorDetailPresenter) {
+
+	init(presenter: ICreatorDetailsPresenter) {
 		self.presenter = presenter
 		super.init()
 	}
@@ -28,13 +30,37 @@ class CreatorDetailsViewController: DetailsViewControllerTemplate, IAuthorDetail
 
 	override func viewDidLoad() {
 		super.viewDidLoad()
+		tableView.dataSource = self
+
 		loadData()
 	}
 
 	//MARK: - Load data method
 	func loadData() {
-//		textLabel.text = presenter.loadAuthorData().0
-		titleLabel.text = presenter.loadAuthorData().0.fullName
-		image.image = presenter.loadAuthorData().1
+		titleLabel.text = presenter.loadCreatorData().0.fullName
+		image.image = presenter.loadCreatorData().1
+		if let array = presenter.loadCreatorData().0.comics?.items {
+			comicsArray = array
+		}
+		tableView.reloadData()
+	}
+	func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+		return comicsArray.count
+	}
+
+	func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+		let cell = UITableViewCell(style: .subtitle, reuseIdentifier: "comicsItemCell")
+		if !comicsArray.isEmpty {
+
+			let name = comicsArray[indexPath.row].name
+//			let url = comicsArray[indexPath.row].resourceURI
+
+			cell.textLabel?.text = name
+		}
+		return cell
+	}
+
+	func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+		return !comicsArray.isEmpty ? "Comics which feature work by this creator" : ""
 	}
 }

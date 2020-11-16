@@ -7,14 +7,14 @@
 //
 
 import Foundation
-protocol IAuthorDetailsRouter
+protocol ICreatorDetailsRouter
 {
 }
 
-class CreatorDetailsRouter: IAuthorDetailsRouter
+class CreatorDetailsRouter: ICreatorDetailsRouter
 {
 
-	weak var viewController: IAuthorDetailsViewController? //weak
+	weak var viewController: ICreatorDetailsViewController? //weak
 
 	private var factory: ModulesFactory //strong!!!! WARNING
 

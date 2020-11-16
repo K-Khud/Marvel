@@ -19,7 +19,7 @@ class CharacterRouter
 
 	weak var viewController: CharacterTableViewController? //weak
 
-	private var factory: ModulesFactory //STRONG!!! warning
+	private var factory: ModulesFactory //strong
 
 	init(factory: ModulesFactory) {
 		self.factory = factory
