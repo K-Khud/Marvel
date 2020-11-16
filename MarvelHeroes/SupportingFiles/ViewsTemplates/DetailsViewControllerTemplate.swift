@@ -36,6 +36,7 @@ class DetailsViewControllerTemplate: UIViewController, UITableViewDelegate
 
 	var image: UIImageView = {
 		let backImageView = UIImageView(image: UIImage(named: "UIImage_1"))
+
 		return backImageView
 	}()
 
