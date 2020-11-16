@@ -38,7 +38,6 @@ class CreatorDetailsViewController: DetailsViewControllerTemplate, ICreatorDetai
 	private func configureNavigationBar() {
 		navigationController?.viewControllers.forEach({ (viewController) in
 			viewController.navigationItem.backButtonTitle = "Creators"
-			print(viewController.description)
 		})
 		navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
 		navigationController?.navigationBar.shadowImage = UIImage()

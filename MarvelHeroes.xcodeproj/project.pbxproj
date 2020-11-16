@@ -162,7 +162,7 @@
 			path = DetailsCharacterModule;
 			sourceTree = "<group>";
 		};
-		0298C97725628D5B0046C081 /* AuthorDetailsModule */ = {
+		0298C97725628D5B0046C081 /* CreatorDetailsModule */ = {
 			isa = PBXGroup;
 			children = (
 				0298C97425628D490046C081 /* CreatorDetailsRepository.swift */,
@@ -170,7 +170,7 @@
 				0298C97C25628D8D0046C081 /* CreatorDetailsRouter.swift */,
 				0298C97F25628D9E0046C081 /* CreatorDetailsViewController.swift */,
 			);
-			path = AuthorDetailsModule;
+			path = CreatorDetailsModule;
 			sourceTree = "<group>";
 		};
 		02BA45CA255EE851007BCE7F /* ComicsDetailsModule */ = {
@@ -222,7 +222,7 @@
 				021D2148255C0A00007A42D8 /* ComicsSearchModule */,
 				02BA45CA255EE851007BCE7F /* ComicsDetailsModule */,
 				021D214B255C0A26007A42D8 /* CreatorsSearchModule */,
-				0298C97725628D5B0046C081 /* AuthorDetailsModule */,
+				0298C97725628D5B0046C081 /* CreatorDetailsModule */,
 				C6CC724A239832D000133380 /* HTTPSettings */,
 				C6B85DEE2398098C00D4D5E7 /* Requests */,
 				C6B85DDB2398054500D4D5E7 /* Models */,

@@ -37,6 +37,7 @@ class SearchViewControllerTemplate: UIViewController, UITableViewDelegate
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		tableView.delegate = self
+		self.titleView.searchBar.searchTextField.delegate = self
 		setupTitleView()
 		setupTableView()
 		registerCells()
