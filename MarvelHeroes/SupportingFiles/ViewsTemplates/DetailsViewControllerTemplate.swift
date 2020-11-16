@@ -66,6 +66,7 @@ class DetailsViewControllerTemplate: UIViewController, UITableViewDelegate
 		tableView.leftAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leftAnchor).isActive = true
 		tableView.rightAnchor.constraint(equalTo: view.safeAreaLayoutGuide.rightAnchor).isActive = true
 		tableView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor).isActive = true
+		tableView.tableFooterView = UIView()
 		view.layoutSubviews()
 	}
 

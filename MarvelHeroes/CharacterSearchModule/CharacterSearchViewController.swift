@@ -10,7 +10,7 @@ import UIKit
 
 protocol ICharacterViewController: AnyObject
 {
-	func show(heroes: [ComicCharacter])
+	func show(heroes: [Character])
 	func show(image: UIImage, for url: URL)
 	func showStub()
 }
@@ -19,11 +19,11 @@ class CharacterTableViewController: SearchViewControllerTemplate, UITableViewDat
 {
 	private var presenter: ICharacterSearchPresenter //strong
 	
-	private var charactersArray = [ComicCharacter]()
+	private var charactersArray = [Character]()
 
 	init(presenter: ICharacterSearchPresenter) {
 		self.presenter = presenter
-		super.init(categoryName: "Heroes")
+		super.init(categoryName: "Heroes", reuseIdentifier: "characterCell")
 	}
 
 	required init?(coder aDecoder: NSCoder) {
@@ -83,7 +83,7 @@ extension CharacterTableViewController: ICharacterViewController
 		tableView.reloadData()
 	}
 
-	func show(heroes: [ComicCharacter]) {
+	func show(heroes: [Character]) {
 		charactersArray = heroes
 		dummy.isHidden = true
 		tableView.reloadData()

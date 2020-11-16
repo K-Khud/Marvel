@@ -42,10 +42,9 @@ class DetailsCharacterViewController: DetailsViewControllerTemplate, IDetailsCha
 		titleLabel.text = presenter.loadCharacterData().0.name
 		image.image = presenter.loadCharacterData().1
 		if let array = presenter.loadCharacterData().0.comics?.items {
-		comicItemsArray = array
+			comicItemsArray = array
 		}
 		tableView.reloadData()
-
 	}
 
 	func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -64,7 +63,4 @@ class DetailsCharacterViewController: DetailsViewControllerTemplate, IDetailsCha
 		}
 		return cell
 	}
-
-
-
 }

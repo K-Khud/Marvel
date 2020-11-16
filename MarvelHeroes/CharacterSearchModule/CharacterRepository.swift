@@ -10,7 +10,7 @@ import Foundation
 
 protocol ICharacterRepository
 {
-	func getCharacters(with nameParameter: String?, completion: @escaping (Result<ComicCharacter, SearchError>) -> Void)
+	func getCharacters(with nameParameter: String?, completion: @escaping (Result<Character, SearchError>) -> Void)
 }
 
 class CharacterRepository: ICharacterRepository
@@ -19,7 +19,7 @@ class CharacterRepository: ICharacterRepository
 									privateKey: MarvelKeys.privateKey.rawValue) //strong
 
 
-	public func getCharacters(with nameParameter: String?, completion: @escaping (Result<ComicCharacter, SearchError>) -> Void) {
+	public func getCharacters(with nameParameter: String?, completion: @escaping (Result<Character, SearchError>) -> Void) {
 
 		apiClient.send(GetCharacters(name: nil, nameStartsWith: nameParameter, limit: nil, offset: nil)) { response in
 

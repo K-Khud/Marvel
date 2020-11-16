@@ -1,7 +1,7 @@
 import Foundation
 
 public struct GetCharacters: APIRequest {
-	public typealias Response = [ComicCharacter]
+	public typealias Response = [Character]
 
 	public var resourceName: String {
 		return "characters"

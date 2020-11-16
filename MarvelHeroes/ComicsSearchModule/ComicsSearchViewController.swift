@@ -24,7 +24,7 @@ class ComicsSearchViewController: SearchViewControllerTemplate, UITableViewDataS
 
 	init(presenter: IComicsSearchPresenter) {
 		self.presenter = presenter
-		super.init(categoryName: "Comics")
+		super.init(categoryName: "Comics", reuseIdentifier: "comicsCell")
 	}
 
 	required init?(coder aDecoder: NSCoder) {

@@ -28,7 +28,7 @@ class CreatorsSearchViewController: SearchViewControllerTemplate, UITableViewDat
 
 	init(presenter: CreatorsSearchPresenter) {
 		self.presenter = presenter
-		super.init(categoryName: "Creators")
+		super.init(categoryName: "Creators", reuseIdentifier: "creatorsCell")
 	}
 
 	required init?(coder: NSCoder) {

@@ -15,4 +15,5 @@ public struct Comic: Decodable {
 	public let description: String?
 	public let pageCount: Int?
 	public let thumbnail: Image?
+	public let characters: Characters?
 }

@@ -14,6 +14,7 @@ class SearchViewControllerTemplate: UIViewController, UITableViewDelegate
 	var imagesDict = [URL : UIImage]()
 	let tableView = UITableView()
 
+	var reuseIdentifier: String?
 	var categoryName: String?
 
 	var queryText: String = "" {
@@ -23,7 +24,7 @@ class SearchViewControllerTemplate: UIViewController, UITableViewDelegate
 	}
 	var dummy = EmptyView(frame: .zero, queryText: "")
 
-	init(categoryName: String?) {
+	init(categoryName: String?, reuseIdentifier: String?) {
 		super.init(nibName: nil, bundle: nil)
 		self.categoryName = categoryName
 	}
@@ -71,7 +72,7 @@ class SearchViewControllerTemplate: UIViewController, UITableViewDelegate
 	}
 
 	private func registerCells() {
-		tableView.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
+		tableView.register(UITableViewCell.self, forCellReuseIdentifier: reuseIdentifier ?? "cell")
 		tableView.register(CustomSectionTitle.self, forHeaderFooterViewReuseIdentifier: "sectionHeader")
 	}
 

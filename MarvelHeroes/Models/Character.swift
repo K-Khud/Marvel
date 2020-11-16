@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-public struct ComicCharacter: Decodable {
+public struct Character: Decodable {
 	public let id: Int
 	public let name: String?
 	public let description: String?

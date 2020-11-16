@@ -13,9 +13,12 @@ protocol IComicsDetailsViewController: AnyObject
 {
 }
 
-class ComicsDetailsViewController: DetailsViewControllerTemplate, IComicsDetailsViewController
+class ComicsDetailsViewController: DetailsViewControllerTemplate, IComicsDetailsViewController, UITableViewDataSource
 {
 	private var presenter: IComicsDetailPresenter
+
+	private var seriesArray = [Series]()
+
 
 	init(presenter: IComicsDetailPresenter) {
 		self.presenter = presenter
@@ -28,6 +31,8 @@ class ComicsDetailsViewController: DetailsViewControllerTemplate, IComicsDetails
 
 	override func viewDidLoad() {
 		super.viewDidLoad()
+		tableView.dataSource = self
+
 		loadData()
 	}
 
@@ -36,5 +41,25 @@ class ComicsDetailsViewController: DetailsViewControllerTemplate, IComicsDetails
 		textLabel.text = presenter.loadComicsData().0.description
 		titleLabel.text = presenter.loadComicsData().0.title
 		image.image = presenter.loadComicsData().1
+		if let array = presenter.loadComicsData().0.characters?.items {
+			seriesArray = array
+		}
+		tableView.reloadData()
+	}
+	func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+		return seriesArray.count
+	}
+
+	func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+		let cell = UITableViewCell(style: .subtitle, reuseIdentifier: "seriesItemCell")
+		if !seriesArray.isEmpty {
+
+			let name = seriesArray[indexPath.row].name
+			let url = seriesArray[indexPath.row].resourceURI
+			print(url)
+
+			cell.textLabel?.text = name
+		}
+		return cell
 	}
 }

@@ -11,21 +11,21 @@ import UIKit
 
 protocol IDetailsCharacterRepository
 {
-	func getCharacterDetails() -> (ComicCharacter, UIImage?)
+	func getCharacterDetails() -> (Character, UIImage?)
 }
 
 class DetailsCharacterRepository: IDetailsCharacterRepository
 {
 
-	private var character: ComicCharacter
+	private var character: Character
 	private var image: UIImage?
 
-	init(character: ComicCharacter, image: UIImage?) {
+	init(character: Character, image: UIImage?) {
 		self.character = character
 		self.image = image
 	}
 
-	func getCharacterDetails() -> (ComicCharacter, UIImage?) {
+	func getCharacterDetails() -> (Character, UIImage?) {
 		return (character, image)
 	}
 }
