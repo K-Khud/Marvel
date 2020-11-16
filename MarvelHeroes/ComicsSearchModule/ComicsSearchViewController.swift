@@ -18,8 +18,7 @@ protocol IComicsSearchViewController: AnyObject
 
 class ComicsSearchViewController: SearchViewControllerTemplate, UITableViewDataSource
 {
-	private var presenter: IComicsSearchPresenter //strong
-
+	private var presenter: IComicsSearchPresenter
 	private var comicsArray = [Comic]()
 
 	init(presenter: IComicsSearchPresenter) {
@@ -34,7 +33,6 @@ class ComicsSearchViewController: SearchViewControllerTemplate, UITableViewDataS
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		presenter.loadComics(with: nil)
-
 		tableView.dataSource = self
 	}
 
@@ -61,13 +59,11 @@ class ComicsSearchViewController: SearchViewControllerTemplate, UITableViewDataS
 			cell.accessoryType = .disclosureIndicator
 			cell.imageView?.layer.masksToBounds = true
 			cell.imageView?.layer.cornerRadius = 40
-
 		}
 		if let details = comicsArray[indexPath.row].description {
 			cell.detailTextLabel?.text = details != "" ? details : ""
 			cell.detailTextLabel?.textColor = .systemGray
 			cell.detailTextLabel?.font = .systemFont(ofSize: 14)
-
 		}
 		if let url = comicsArray[indexPath.row].thumbnail?.url {
 			if let imageForCrop = imagesDict[url] {

@@ -20,7 +20,6 @@ protocol ICreatorsSearchViewController: AnyObject
 class CreatorsSearchViewController: SearchViewControllerTemplate, UITableViewDataSource
 
 {
-
 	let presenter: ICreatorsSearchPresenter
 	private var authorsArray = [Creator]()
 
@@ -64,7 +63,6 @@ class CreatorsSearchViewController: SearchViewControllerTemplate, UITableViewDat
 			cell.accessoryType = .disclosureIndicator
 			cell.imageView?.layer.masksToBounds = true
 			cell.imageView?.layer.cornerRadius = 40
-
 		}
 
 		if let url = authorsArray[indexPath.row].thumbnail?.url {

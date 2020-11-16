@@ -13,7 +13,9 @@ protocol IComicsDetailsViewController: AnyObject
 {
 }
 
-class ComicsDetailsViewController: DetailsViewControllerTemplate, IComicsDetailsViewController, UITableViewDataSource
+class ComicsDetailsViewController: DetailsViewControllerTemplate,
+								   IComicsDetailsViewController,
+								   UITableViewDataSource
 {
 	private var presenter: IComicsDetailPresenter
 
@@ -36,10 +38,9 @@ class ComicsDetailsViewController: DetailsViewControllerTemplate, IComicsDetails
 	}
 
 	private func configureNavigationBar() {
-		if let navigation = navigationController?.viewControllers[1] {
-			navigation.navigationItem.backButtonTitle = "Comics"
-			navigation.view.backgroundColor = .clear
-		}
+		navigationController?.viewControllers.forEach({ (viewController) in
+			viewController.navigationItem.backButtonTitle = "Comics"
+		})
 		navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
 		navigationController?.navigationBar.shadowImage = UIImage()
 		navigationController?.navigationBar.isTranslucent = true
@@ -62,10 +63,7 @@ class ComicsDetailsViewController: DetailsViewControllerTemplate, IComicsDetails
 	func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
 		let cell = UITableViewCell(style: .subtitle, reuseIdentifier: "charactersItemCell")
 		if !seriesArray.isEmpty {
-
 			let name = seriesArray[indexPath.row].name
-//			let url = seriesArray[indexPath.row].resourceURI
-
 			cell.textLabel?.text = name
 		}
 		return cell
@@ -74,5 +72,4 @@ class ComicsDetailsViewController: DetailsViewControllerTemplate, IComicsDetails
 	func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
 		return !seriesArray.isEmpty ? "Characters which appear in this comic" : ""
 	}
-
 }

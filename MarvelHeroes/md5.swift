@@ -1,4 +1,12 @@
 
+//
+//  AuthorDetailsViewController.swift
+//  MarvelHeroes
+//
+//  Created by Ekaterina Khudzhamkulova on 16.11.2020.
+//  Copyright © 2020 Ekaterina. All rights reserved.
+//
+
 public typealias Byte = UInt8
 typealias Word = UInt32
 

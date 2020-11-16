@@ -14,10 +14,8 @@ protocol IDetailsCharacterRouter
 
 class DetailsCharacterRouter: IDetailsCharacterRouter
 {
-
-	weak var viewController: IDetailsCharacterViewController? //weak
-
-	private var factory: ModulesFactory //strong!!!! WARNING
+	weak var viewController: IDetailsCharacterViewController?
+	private var factory: ModulesFactory
 
 	init(factory: ModulesFactory) {
 		self.factory = factory

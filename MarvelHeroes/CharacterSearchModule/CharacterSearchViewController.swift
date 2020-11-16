@@ -17,8 +17,7 @@ protocol ICharacterViewController: AnyObject
 
 class CharacterTableViewController: SearchViewControllerTemplate, UITableViewDataSource
 {
-	private var presenter: ICharacterSearchPresenter //strong
-	
+	private var presenter: ICharacterSearchPresenter
 	private var charactersArray = [Character]()
 
 	init(presenter: ICharacterSearchPresenter) {

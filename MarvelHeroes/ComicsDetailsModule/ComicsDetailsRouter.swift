@@ -14,10 +14,8 @@ protocol IComicsDetailsRouter
 
 class ComicsDetailsRouter: IComicsDetailsRouter
 {
-
-	weak var viewController: IComicsDetailsViewController? //weak
-
-	private var factory: ModulesFactory //strong!!!! WARNING
+	weak var viewController: IComicsDetailsViewController?
+	private var factory: ModulesFactory
 
 	init(factory: ModulesFactory) {
 		self.factory = factory

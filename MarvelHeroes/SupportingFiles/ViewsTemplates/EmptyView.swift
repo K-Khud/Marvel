@@ -35,7 +35,6 @@ class EmptyView: UIView
 
 	private func configureContents() {
 		self.backgroundColor = UIColor(named: "headerColor")
-
 		image.translatesAutoresizingMaskIntoConstraints = false
 		label.translatesAutoresizingMaskIntoConstraints = false
 
@@ -44,7 +43,6 @@ class EmptyView: UIView
 
 		image.centerXAnchor.constraint(equalTo: self.centerXAnchor).isActive = true
 		image.centerYAnchor.constraint(equalTo: self.centerYAnchor).isActive = true
-
 		label.centerXAnchor.constraint(equalTo: self.centerXAnchor).isActive = true
 		label.topAnchor.constraint(equalTo: image.bottomAnchor).isActive = true
 		label.widthAnchor.constraint(equalTo: self.widthAnchor, constant: -20).isActive = true

@@ -16,7 +16,6 @@ protocol ICreatorDetailsRepository
 
 class CreatorDetailsRepository: ICreatorDetailsRepository
 {
-
 	private var creator: Creator
 	private var image: UIImage?
 

@@ -46,7 +46,6 @@ class ImageLoader: IImageLoader
 		  completion(.failure(error))
 		  return
 		}
-
 	  }
 	  task.resume()
 

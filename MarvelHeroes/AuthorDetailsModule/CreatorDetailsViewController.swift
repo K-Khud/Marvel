@@ -36,10 +36,10 @@ class CreatorDetailsViewController: DetailsViewControllerTemplate, ICreatorDetai
 	}
 
 	private func configureNavigationBar() {
-		if let navigation = navigationController?.viewControllers[1] {
-			navigation.navigationItem.backButtonTitle = "Creators"
-			navigation.view.backgroundColor = .clear
-		}
+		navigationController?.viewControllers.forEach({ (viewController) in
+			viewController.navigationItem.backButtonTitle = "Creators"
+			print(viewController.description)
+		})
 		navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
 		navigationController?.navigationBar.shadowImage = UIImage()
 		navigationController?.navigationBar.isTranslucent = true
@@ -61,10 +61,7 @@ class CreatorDetailsViewController: DetailsViewControllerTemplate, ICreatorDetai
 	func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
 		let cell = UITableViewCell(style: .subtitle, reuseIdentifier: "comicsItemCell")
 		if !comicsArray.isEmpty {
-
 			let name = comicsArray[indexPath.row].name
-//			let url = comicsArray[indexPath.row].resourceURI
-
 			cell.textLabel?.text = name
 		}
 		return cell

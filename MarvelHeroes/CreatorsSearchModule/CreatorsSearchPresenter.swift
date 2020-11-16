@@ -12,15 +12,14 @@ import UIKit
 protocol ICreatorsSearchPresenter
 {
 	func showDetail(of creator: Creator, with image: UIImage?)
-
 	func loadCreators(with nameParameter: String?)
 }
 
 class CreatorsSearchPresenter: ICreatorsSearchPresenter
 {
-	weak var view: ICreatorsSearchViewController? //weak
-	private var router: ICreatorsSearchRouter //strong
-	private var repository: ICreatorsSearchRepository //strong
+	weak var view: ICreatorsSearchViewController?
+	private var router: ICreatorsSearchRouter
+	private var repository: ICreatorsSearchRepository 
 
 	private var loader = ImageLoader()
 	private var imagesUrls = [URL]()

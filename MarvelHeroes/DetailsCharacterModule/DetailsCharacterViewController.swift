@@ -15,9 +15,7 @@ protocol IDetailsCharacterViewController: AnyObject
 
 class DetailsCharacterViewController: DetailsViewControllerTemplate, IDetailsCharacterViewController, UITableViewDataSource
 {
-
 	private let presenter: IDetailCharacterPresenter
-
 	private var comicItemsArray = [ComicsItem]()
 
 	init(presenter: IDetailCharacterPresenter) {
@@ -38,10 +36,9 @@ class DetailsCharacterViewController: DetailsViewControllerTemplate, IDetailsCha
 	}
 
 	private func configureNavigationBar() {
-		if let navigation = navigationController?.viewControllers[0] {
-			navigation.navigationItem.backButtonTitle = "Heroes"
-			navigation.view.backgroundColor = .clear
-		}
+		navigationController?.viewControllers.forEach({ (viewController) in
+			viewController.navigationItem.backButtonTitle = "Heroes"
+		})
 		navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
 		navigationController?.navigationBar.shadowImage = UIImage()
 		navigationController?.navigationBar.isTranslucent = true

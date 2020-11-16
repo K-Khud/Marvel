@@ -16,10 +16,9 @@ protocol ICharacterSearchRouter
 
 class CharacterRouter
 {
+	weak var viewController: CharacterTableViewController?
 
-	weak var viewController: CharacterTableViewController? //weak
-
-	private var factory: ModulesFactory //strong
+	private var factory: ModulesFactory 
 
 	init(factory: ModulesFactory) {
 		self.factory = factory

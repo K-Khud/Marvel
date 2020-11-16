@@ -15,7 +15,6 @@ class CreatorDetailsRouter: ICreatorDetailsRouter
 {
 
 	weak var viewController: ICreatorDetailsViewController? //weak
-
 	private var factory: ModulesFactory //strong!!!! WARNING
 
 	init(factory: ModulesFactory) {

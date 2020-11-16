@@ -12,7 +12,6 @@ import UIKit
 protocol ICharacterSearchPresenter
 {
 	func showDetail(of character: Character, with image: UIImage?)
-
 	func loadCharacters(with nameParameter: String?)
 }
 
@@ -54,8 +53,6 @@ extension CharactersSearchPresenter: ICharacterSearchPresenter
 		repository.getCharacters(with: nameParameter) { result in
 
 			let token = result.map({ comicCharacter in
-
-
 				DispatchQueue.main.async {
 					if let newUrl = comicCharacter.thumbnail?.url {
 						self.imagesUrls.append(newUrl)

@@ -16,10 +16,9 @@ protocol IComicsSearchRouter
 
 class ComicsSearchRouter
 {
+	weak var viewController: ComicsSearchViewController?
 
-	weak var viewController: ComicsSearchViewController? //weak
-
-	private var factory: ModulesFactory //strong
+	private var factory: ModulesFactory 
 	init(factory: ModulesFactory) {
 		self.factory = factory
 	}

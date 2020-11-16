@@ -13,7 +13,7 @@ class SearchViewControllerTemplate: UIViewController, UITableViewDelegate
 {
 	var imagesDict = [URL : UIImage]()
 	let tableView = UITableView()
-	var titleView = SearchTitleView(frame: .zero)
+	private var titleView = SearchTitleView(frame: .zero)
 
 	var reuseIdentifier: String?
 	var categoryName: String?
@@ -36,9 +36,7 @@ class SearchViewControllerTemplate: UIViewController, UITableViewDelegate
 
 	override func viewDidLoad() {
 		super.viewDidLoad()
-
 		tableView.delegate = self
-
 		setupTitleView()
 		setupTableView()
 		registerCells()
@@ -74,7 +72,6 @@ class SearchViewControllerTemplate: UIViewController, UITableViewDelegate
 		dummy.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor).isActive = true
 		dummy.isHidden = true
 		dummy.translatesAutoresizingMaskIntoConstraints = false
-
 	}
 	//MARK: - TableView Layout methods
 

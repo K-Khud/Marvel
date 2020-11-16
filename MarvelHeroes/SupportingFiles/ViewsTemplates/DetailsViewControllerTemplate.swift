@@ -12,7 +12,6 @@ import UIKit
 class DetailsViewControllerTemplate: UIViewController, UITableViewDelegate
 {
 	private let backgroundColor = UIColor(named: "headerColor")
-
 	var tableView = UITableView()
 
 	var textLabel: UILabel = {
@@ -61,7 +60,6 @@ class DetailsViewControllerTemplate: UIViewController, UITableViewDelegate
 	func setupTableView() {
 		view.addSubview(tableView)
 		tableView.translatesAutoresizingMaskIntoConstraints = false
-
 		tableView.topAnchor.constraint(equalTo: image.bottomAnchor).isActive = true
 		tableView.leftAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leftAnchor).isActive = true
 		tableView.rightAnchor.constraint(equalTo: view.safeAreaLayoutGuide.rightAnchor).isActive = true
@@ -74,9 +72,7 @@ class DetailsViewControllerTemplate: UIViewController, UITableViewDelegate
 	private func setupImage() {
 		view.addSubview(image)
 		image.translatesAutoresizingMaskIntoConstraints = false
-
 		image.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
-
 		image.leftAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leftAnchor).isActive = true
 		image.rightAnchor.constraint(equalTo: view.safeAreaLayoutGuide.rightAnchor).isActive = true
 		image.heightAnchor.constraint(equalToConstant: image.frame.width).isActive = true

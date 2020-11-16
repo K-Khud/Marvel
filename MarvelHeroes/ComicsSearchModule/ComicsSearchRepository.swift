@@ -15,8 +15,7 @@ protocol IComicsSearchRepository
 class ComicsSearchRepository: IComicsSearchRepository
 {
 	private let apiClient = MarvelAPIClient(publicKey: MarvelKeys.publicKey.rawValue,
-									privateKey: MarvelKeys.privateKey.rawValue) //strong
-
+									privateKey: MarvelKeys.privateKey.rawValue) 
 
 	public func getComics(with nameParameter: String?, completion: @escaping (Result<Comic, SearchError>) -> Void) {
 

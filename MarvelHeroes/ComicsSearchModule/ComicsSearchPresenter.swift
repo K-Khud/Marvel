@@ -75,9 +75,7 @@ extension ComicsSearchPresenter: IComicsSearchPresenter
 			}
 		}
 	}
-
 	func showDetail(of comics: Comic, with image: UIImage?) {
 		router.showDetail(of: comics, with: image)
 	}
-
 }

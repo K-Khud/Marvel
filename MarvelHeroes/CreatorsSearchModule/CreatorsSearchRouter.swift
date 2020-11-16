@@ -16,10 +16,8 @@ protocol ICreatorsSearchRouter
 
 class CreatorsSearchRouter
 {
-
-	weak var viewController: CreatorsSearchViewController? //weak
-
-	private var factory: ModulesFactory //strong!!!! WARNING
+	weak var viewController: CreatorsSearchViewController?
+	private var factory: ModulesFactory
 
 	init(factory: ModulesFactory) {
 		self.factory = factory
